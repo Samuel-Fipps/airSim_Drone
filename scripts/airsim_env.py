@@ -223,8 +223,8 @@ class AirSimDroneEnv(gym.Env):
             start_time_1 = time.time()
         #print("Time: ", elapsed_time_2)
         """
-        step_counter += 1
-        if step_counter % 1000 == 0: print("Current Step:", step_counter, "Out of 500,000")
+        #step_counter += 1
+        #if step_counter % 2000 == 0: print("Current Step:", step_counter, "Out of 500,000")
         
         # stop at 200 steps
         done_here = False

@@ -84,7 +84,7 @@ callbacks = []
 eval_callback = EvalCallback(
     env,
     callback_on_new_best=None,
-    n_eval_episodes=100,
+    n_eval_episodes=25,
     best_model_save_path=".",
     log_path=".",
     eval_freq=10000,
