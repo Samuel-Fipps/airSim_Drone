@@ -1,0 +1,19 @@
+Eval num_timesteps=10000, episode_reward=-158.53 +/- 12.33
+Episode length: 7.24 +/- 0.43
+New best mean reward!
+Traceback (most recent call last):
+  File "F:\Everything\New_drone\loading_main.py", line 110, in <module>
+    loaded_model.learn(
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\ppo\ppo.py", line 299, in learn
+    return super(PPO, self).learn(
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\on_policy_algorithm.py", line 271, in learn
+    self.train()
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\ppo\ppo.py", line 189, in train
+    for rollout_data in self.rollout_buffer.get(self.batch_size):
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\buffers.py", line 463, in get
+    yield self._get_samples(indices[start_idx : start_idx + batch_size])
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\buffers.py", line 475, in _get_samples
+    return RolloutBufferSamples(*tuple(map(self.to_torch, data)))
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\buffers.py", line 134, in to_torch
+    return th.tensor(array).to(self.device)
+KeyboardInterrupt

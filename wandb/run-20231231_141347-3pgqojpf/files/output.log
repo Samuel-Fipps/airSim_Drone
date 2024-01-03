@@ -1,0 +1,78 @@
+Eval num_timesteps=10000, episode_reward=-21.09 +/- 2.92
+Episode length: 7.68 +/- 0.47
+New best mean reward!
+Eval num_timesteps=20000, episode_reward=-22.52 +/- 1.75
+Episode length: 7.92 +/- 0.27
+Eval num_timesteps=30000, episode_reward=-20.51 +/- 3.11
+Episode length: 7.60 +/- 0.49
+New best mean reward!
+Eval num_timesteps=40000, episode_reward=-19.72 +/- 3.17
+Episode length: 7.48 +/- 0.50
+New best mean reward!
+Eval num_timesteps=50000, episode_reward=-21.19 +/- 2.80
+Episode length: 7.72 +/- 0.45
+Eval num_timesteps=60000, episode_reward=-19.94 +/- 3.16
+Episode length: 7.52 +/- 0.50
+Eval num_timesteps=70000, episode_reward=-21.98 +/- 2.33
+Episode length: 7.84 +/- 0.37
+Eval num_timesteps=80000, episode_reward=-20.00 +/- 3.14
+Episode length: 7.52 +/- 0.50
+Eval num_timesteps=90000, episode_reward=-18.69 +/- 2.92
+Episode length: 7.32 +/- 0.47
+New best mean reward!
+Eval num_timesteps=100000, episode_reward=-18.69 +/- 2.88
+Episode length: 7.32 +/- 0.47
+New best mean reward!
+Eval num_timesteps=110000, episode_reward=-19.46 +/- 3.04
+Episode length: 7.44 +/- 0.50
+Eval num_timesteps=120000, episode_reward=-18.51 +/- 2.89
+Episode length: 7.28 +/- 0.45
+New best mean reward!
+Eval num_timesteps=130000, episode_reward=-18.68 +/- 2.91
+Episode length: 7.32 +/- 0.47
+Eval num_timesteps=140000, episode_reward=-19.71 +/- 3.18
+Episode length: 7.48 +/- 0.50
+Eval num_timesteps=150000, episode_reward=-19.25 +/- 2.97
+Episode length: 7.40 +/- 0.49
+Eval num_timesteps=160000, episode_reward=-18.98 +/- 3.03
+Episode length: 7.36 +/- 0.48
+Eval num_timesteps=170000, episode_reward=-19.51 +/- 3.11
+Episode length: 7.44 +/- 0.50
+Eval num_timesteps=180000, episode_reward=-20.29 +/- 3.12
+Episode length: 7.56 +/- 0.50
+Eval num_timesteps=190000, episode_reward=-20.50 +/- 3.05
+Episode length: 7.60 +/- 0.49
+Eval num_timesteps=200000, episode_reward=-18.09 +/- 2.51
+Episode length: 7.20 +/- 0.40
+New best mean reward!
+Eval num_timesteps=210000, episode_reward=-18.11 +/- 2.52
+Episode length: 7.20 +/- 0.40
+Eval num_timesteps=220000, episode_reward=-17.59 +/- 2.01
+Episode length: 7.12 +/- 0.32
+New best mean reward!
+Eval num_timesteps=230000, episode_reward=-19.01 +/- 2.99
+Episode length: 7.36 +/- 0.48
+Eval num_timesteps=240000, episode_reward=-17.74 +/- 2.36
+Episode length: 7.16 +/- 0.37
+Traceback (most recent call last):
+  File "F:\Everything\New_drone\loading_main.py", line 110, in <module>
+    loaded_model.learn(
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\ppo\ppo.py", line 299, in learn
+    return super(PPO, self).learn(
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\on_policy_algorithm.py", line 251, in learn
+    continue_training = self.collect_rollouts(self.env, callback, self.rollout_buffer, n_rollout_steps=self.n_steps)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\on_policy_algorithm.py", line 179, in collect_rollouts
+    new_obs, rewards, dones, infos = env.step(clipped_actions)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\vec_env\base_vec_env.py", line 162, in step
+    return self.step_wait()
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\vec_env\vec_transpose.py", line 95, in step_wait
+    observations, rewards, dones, infos = self.venv.step_wait()
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\vec_env\dummy_vec_env.py", line 49, in step_wait
+    obs = self.envs[env_idx].reset()
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\monitor.py", line 79, in reset
+    return self.env.reset(**kwargs)
+  File "F:\Everything\New_drone\scripts\airsim_env.py", line 81, in reset
+    self.setup_flight()
+  File "F:\Everything\New_drone\scripts\airsim_env.py", line 102, in setup_flight
+    time.sleep(1)
+KeyboardInterrupt
