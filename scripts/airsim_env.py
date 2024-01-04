@@ -29,6 +29,7 @@ continues_to_be_bad = 1
 within_distance_counter = 0 
 pic_counter = 0
 debug_counter = 0
+target_yaw = 0  
 
 def interpolate_velocity(current_v, target_v, steps=10):
     return np.linspace(current_v, target_v, steps)
@@ -130,7 +131,101 @@ class AirSimDroneEnv(gym.Env):
         obs = self.get_rgb_image()
         return obs, self.info
 
+
+
+    def convert_to_euler_angles(self, quaternion):
+        """
+        Convert a quaternion to Euler angles (roll, pitch, yaw).
+        Quaternion is assumed to be in the format of [w, x, y, z].
+        """
+
+        w, x, y, z = quaternion.w_val, quaternion.x_val, quaternion.y_val, quaternion.z_val
+
+        # Roll (x-axis rotation)
+        sinr_cosp = 2 * (w * x + y * z)
+        cosr_cosp = 1 - 2 * (x * x + y * y)
+        roll = math.atan2(sinr_cosp, cosr_cosp)
+
+        # Pitch (y-axis rotation)
+        sinp = 2 * (w * y - z * x)
+        if abs(sinp) >= 1:
+            pitch = math.copysign(math.pi / 2, sinp)  # Use 90 degrees if out of range
+        else:
+            pitch = math.asin(sinp)
+
+        # Yaw (z-axis rotation)
+        siny_cosp = 2 * (w * z + x * y)
+        cosy_cosp = 1 - 2 * (y * y + z * z)
+        yaw = math.atan2(siny_cosp, cosy_cosp)
+
+        return roll, pitch, yaw
+    
+
+
     def compute_reward(self):
+        global starting_pose
+        global target_yaw 
+
+
+        # Get current position
+        pose = self.drone.simGetVehiclePose().position
+        x1, y1, z1 = pose.x_val, pose.y_val, pose.z_val
+
+        # Initialize starting_pose if not present
+        if 'starting_pose' not in globals():
+            starting_pose = (x1, y1, z1)
+
+        # Get current position and orientation
+        pose = self.drone.simGetVehiclePose()
+        position = pose.position
+        orientation_q = pose.orientation
+        roll, pitch, yaw = self.convert_to_euler_angles(orientation_q)  # Convert quaternion to Euler angles
+
+        # Desired orientation - assuming forward facing is represented by yaw = 0
+        if target_yaw == 0:
+            target_yaw = yaw
+        yaw_deviation_threshold = 0.45  # Acceptable yaw deviation threshold
+
+        # Calculate distance from the starting position
+        distance_from_start = np.sqrt((position.x_val - starting_pose[0])**2 + 
+                                    (position.y_val - starting_pose[1])**2 + 
+                                    (position.z_val - starting_pose[2])**2)
+
+        # Calculate yaw deviation from target
+        yaw_deviation = abs(yaw - target_yaw)
+
+        # Compute position-based reward
+        if distance_from_start < 0.5:
+            position_reward = 100
+        else:
+            position_reward = -distance_from_start * 3
+
+        # Compute orientation-based reward
+        if yaw_deviation < yaw_deviation_threshold:
+            orientation_reward = 10
+        else:
+            orientation_reward = -yaw_deviation * 3  # Scale as needed
+
+        #print("position_reward:", position_reward)
+        #print("orientation_reward:", orientation_reward)
+
+        # Combine rewards
+        reward = position_reward + orientation_reward
+
+        # Collision check
+        done = False
+        if self.is_collision():
+            done = True
+            reward = -200  # Large penalty for collision
+
+        return reward, done
+
+
+    import math
+
+
+
+    def compute_reward_bac_v2(self):
         # Hovering
         global starting_pose
 

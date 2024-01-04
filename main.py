@@ -12,31 +12,95 @@ import torch.nn as nn
 from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
 from stable_baselines3.common.policies import ActorCriticPolicy
 
+import matplotlib.pyplot as plt
+import torchvision.transforms as transforms
+import numpy as np
+
 # Define a custom CNN feature extractor
+import torch
+import torch.nn as nn
+from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
+
 class CustomCNNFeatureExtractor(BaseFeaturesExtractor):
-    def __init__(self, observation_space, features_dim=512):
+    def __init__(self, observation_space, features_dim=1024):
         super(CustomCNNFeatureExtractor, self).__init__(observation_space, features_dim)
-        
-        # Define custom convolutional layers
+
+        # Enhanced CNN layers with Group Normalization
         self.cnn = nn.Sequential(
-            nn.Conv2d(3, 32, kernel_size=8, stride=4),  # First Conv layer
+            nn.Conv2d(3, 128, kernel_size=3, stride=1),
+            nn.GroupNorm(4, 128),
             nn.ReLU(),
-            nn.Conv2d(32, 64, kernel_size=4, stride=2),  # Second Conv layer
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(128, 256, kernel_size=3, stride=1),
+            nn.GroupNorm(4, 256),
             nn.ReLU(),
-            nn.Conv2d(64, 64, kernel_size=3, stride=1),  # Third Conv layer
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(256, 512, kernel_size=3, stride=1),
+            nn.GroupNorm(4, 512),
             nn.ReLU(),
-            nn.Flatten(),  # Flatten the output
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Flatten(),
         )
 
-        # Assume the input features to the linear layer based on the Flatten layer output
-        self.linear = nn.Sequential(
-            nn.Linear(858624, features_dim),  # Adjust the input dimension as needed
-            nn.ReLU()
+        # Dynamically calculate the flattened size
+        with torch.no_grad():
+            dummy_input = torch.zeros(1, *observation_space.shape)  # Create a dummy input
+            dummy_output = self.cnn(dummy_input)  # Pass the dummy input through the CNN
+            flattened_size = dummy_output.shape[1]  # Get the output size
+
+        # Linear layer before Multi-Head Attention
+        self.pre_attn_linear = nn.Sequential(
+            nn.Linear(flattened_size, features_dim),
+            nn.ReLU(),
+            nn.Dropout(0.25)
+        )
+
+        # Multi-Head Attention Layer
+        self.multihead_attn = nn.MultiheadAttention(embed_dim=features_dim, num_heads=4)
+
+        # Linear layer before LSTM
+        self.linear_before_lstm = nn.Sequential(
+            nn.Linear(features_dim, features_dim),
+            nn.ReLU(),
+            nn.Dropout(0.25)
+        )
+
+        # LSTM Layer
+        self.lstm = nn.LSTM(input_size=features_dim, hidden_size=features_dim, batch_first=True)
+
+        # Final Linear Layer
+        self.final_linear = nn.Sequential(
+            nn.Linear(features_dim, features_dim),
+            nn.ReLU()  # No dropout in the final layer
         )
 
     def forward(self, observations):
-        features = self.cnn(observations)
-        return self.linear(features)
+
+        debug = False
+        if debug:
+            print("hello")
+            # Convert the tensor to an image format for visualization
+            # Assuming observations is a 4D Tensor of shape (batch_size, channels, height, width)
+            img = observations[0]  # Take the first image in the batch
+            img = img.cpu().numpy()  # Convert to numpy array
+            img = np.transpose(img, (1, 2, 0))  # Change the channel order for visualization
+
+            # Normalize the image for better visualization
+            img = (img - img.min()) / (img.max() - img.min())
+
+            # Plot the image
+            plt.imshow(img)
+            plt.show()
+
+
+        cnn_features = self.cnn(observations)
+        pre_attn_linear = self.pre_attn_linear(cnn_features)
+        attn_output, _ = self.multihead_attn(pre_attn_linear.unsqueeze(0), pre_attn_linear.unsqueeze(0), pre_attn_linear.unsqueeze(0))
+        linear_before_lstm = self.linear_before_lstm(attn_output)
+        lstm_out, _ = self.lstm(linear_before_lstm)
+        return self.final_linear(lstm_out.squeeze(0))
+
+
 
 # CustomCnnPolicy with the same MLP structure as the original
 class CustomCnnPolicy(ActorCriticPolicy):
@@ -74,8 +138,8 @@ model = PPO(
     policy=CustomCnnPolicy,  # Using the custom policy
     env=env,
     learning_rate=0.0003,
-    n_steps=2048,  # to train
-    batch_size=128,
+    n_steps=1024,  # to train
+    batch_size=2,
     n_epochs=10,
     gamma=0.99,
     gae_lambda=0.95,
