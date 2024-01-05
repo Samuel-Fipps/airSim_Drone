@@ -12,6 +12,7 @@ import torch.nn as nn
 from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
 from stable_baselines3.common.policies import ActorCriticPolicy
 
+from torch.utils.checkpoint import checkpoint
 import matplotlib.pyplot as plt
 import torchvision.transforms as transforms
 import numpy as np
@@ -22,21 +23,18 @@ import torch.nn as nn
 from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
 
 class CustomCNNFeatureExtractor(BaseFeaturesExtractor):
-    def __init__(self, observation_space, features_dim=1024):
+    def __init__(self, observation_space, features_dim=512):
         super(CustomCNNFeatureExtractor, self).__init__(observation_space, features_dim)
 
         # Enhanced CNN layers with Group Normalization
         self.cnn = nn.Sequential(
-            nn.Conv2d(3, 128, kernel_size=3, stride=1),
-            nn.GroupNorm(4, 128),
+            nn.Conv2d(3, 64, kernel_size=7, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
-            nn.Conv2d(128, 256, kernel_size=3, stride=1),
-            nn.GroupNorm(4, 256),
+            nn.Conv2d(64, 128, kernel_size=7, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
-            nn.Conv2d(256, 512, kernel_size=3, stride=1),
-            nn.GroupNorm(4, 512),
+            nn.Conv2d(128, 256, kernel_size=7, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
             nn.Flatten(),
@@ -52,7 +50,7 @@ class CustomCNNFeatureExtractor(BaseFeaturesExtractor):
         self.pre_attn_linear = nn.Sequential(
             nn.Linear(flattened_size, features_dim),
             nn.ReLU(),
-            nn.Dropout(0.25)
+            nn.Dropout(0.10)
         )
 
         # Multi-Head Attention Layer
@@ -62,7 +60,7 @@ class CustomCNNFeatureExtractor(BaseFeaturesExtractor):
         self.linear_before_lstm = nn.Sequential(
             nn.Linear(features_dim, features_dim),
             nn.ReLU(),
-            nn.Dropout(0.25)
+            nn.Dropout(0.10)
         )
 
         # LSTM Layer
@@ -110,8 +108,9 @@ class CustomCnnPolicy(ActorCriticPolicy):
                                               features_extractor_kwargs=dict(features_dim=512))
 
 
+
 print("Samuel - Check if cuda is avaible to train on:", torch.cuda.is_available())
-torch.cuda.set_device(0)
+#torch.cuda.set_device(0)
 
 with open('scripts/config.yml', 'r') as f:
     env_config = yaml.safe_load(f)
@@ -122,7 +121,7 @@ env = DummyVecEnv(
             gym.make(
                 "scripts:airsim-env-v0", 
                 ip_address="127.0.0.1",
-                image_shape = (720, 1280, 3),
+                image_shape = (480, 640, 3),
                 env_config=env_config["TrainEnv"],
                 #step_length=0.25,
                 step_length=4,
@@ -139,13 +138,14 @@ model = PPO(
     env=env,
     learning_rate=0.0003,
     n_steps=1024,  # to train
-    batch_size=2,
-    n_epochs=10,
+    batch_size=32,
+    n_epochs=50,
     gamma=0.99,
     gae_lambda=0.95,
     device="cuda:1",
     tensorboard_log="./tb_logs/",
 )
+
 
 #print(model.policy)
 #exit()
