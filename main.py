@@ -2,6 +2,7 @@ import yaml
 import gym
 import time
 import torch
+import wandb
 
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import DummyVecEnv, VecTransposeImage
@@ -21,6 +22,43 @@ import numpy as np
 import torch
 import torch.nn as nn
 from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
+
+
+
+class CustomEvalCallback(EvalCallback):
+    def __init__(self, *args, **kwargs):
+        super(CustomEvalCallback, self).__init__(*args, **kwargs)
+
+    def _on_step(self) -> bool:
+        super()._on_step()
+        if self.n_calls % self.eval_freq == 0:
+            # Access the first environment in the vector (assuming you have a vector environment)
+            eval_env = self.eval_env.envs[0]
+
+            # Check if the environment is a Monitor wrapper and retrieve the statistics
+            if hasattr(eval_env, 'get_episode_rewards'):
+                latest_results = eval_env.get_episode_rewards()
+                latest_lengths = eval_env.get_episode_lengths()
+
+                # Compute the mean and standard deviation
+                mean_reward = np.mean(latest_results)
+                std_reward = np.std(latest_results)
+                mean_length = np.mean(latest_lengths)
+                std_length = np.std(latest_lengths)
+
+                # Log to wandb
+                wandb.log({
+                    "eval/mean_reward": mean_reward,
+                    "eval/std_reward": std_reward,
+                    "eval/mean_length": mean_length,
+                    "eval/std_length": std_length
+                })
+            else:
+                print("Monitor wrapper not found in evaluation environment.")
+        return True
+    
+
+
 
 class CustomCNNFeatureExtractor(BaseFeaturesExtractor):
     def __init__(self, observation_space, features_dim=512):
@@ -146,13 +184,19 @@ model = PPO(
     tensorboard_log="./tb_logs/",
 )
 
+# Start logging
+wandb.init(project='Drone',
+            config={
+            "speed": 0.1,
+            }
+)
 
 #print(model.policy)
 #exit()
 
 # Create an evaluation callback with the same env, called every 10000 iterations
 callbacks = []
-eval_callback = EvalCallback(
+eval_callback = CustomEvalCallback(
     env,
     callback_on_new_best=None,
     n_eval_episodes=25,
@@ -176,7 +220,7 @@ model.learn(
 # Save policy weights
 model.save("ppo_airsim_drone_policy")
 
-
+wandb.finish()
 
 
 
