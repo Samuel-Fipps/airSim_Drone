@@ -34,7 +34,7 @@ class CustomCNNFeatureExtractor(BaseFeaturesExtractor):
             nn.Conv2d(64, 128, kernel_size=7, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
-            nn.Conv2d(128, 256, kernel_size=7, stride=1),
+            nn.Conv2d(128, 256, kernel_size=3, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
             nn.Flatten(),

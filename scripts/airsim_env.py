@@ -29,7 +29,6 @@ continues_to_be_bad = 1
 within_distance_counter = 0 
 pic_counter = 0
 debug_counter = 0
-target_yaw = 0  
 
 def interpolate_velocity(current_v, target_v, steps=10):
     return np.linspace(current_v, target_v, steps)
@@ -62,6 +61,7 @@ class AirSimDroneEnv(gym.Env):
 
         self.last_position = None
         self.last_time = None
+        self.step_count = 0
 
 
         self.collision_time = 0
@@ -81,6 +81,7 @@ class AirSimDroneEnv(gym.Env):
     def reset(self):
         self.setup_flight()
         obs, _ = self.get_obs()
+        self.step_count = 0 
         return obs
 
     def render(self):
@@ -122,6 +123,7 @@ class AirSimDroneEnv(gym.Env):
         # Note: Ensure that these values are within the acceptable range for your drone's API
         #self.drone.moveByVelocityAsync(vx, vy, vz, duration=0.3).join()
         #self.drone.moveByRollPitchYawZAsync(roll, pitch, yaw, vz, duration=0.3).join()
+
         self.drone.moveByVelocityAsync(vx, vy, vz, duration=0.1).join()
         self.drone.moveByRollPitchYawZAsync(roll, pitch, yaw, vz, duration=0.1).join()
 
@@ -161,11 +163,9 @@ class AirSimDroneEnv(gym.Env):
         return roll, pitch, yaw
     
 
-
     def compute_reward(self):
         global starting_pose
-        global target_yaw 
-
+        self.step_count += 1
 
         # Get current position
         pose = self.drone.simGetVehiclePose().position
@@ -179,108 +179,44 @@ class AirSimDroneEnv(gym.Env):
         pose = self.drone.simGetVehiclePose()
         position = pose.position
         orientation_q = pose.orientation
-        roll, pitch, yaw = self.convert_to_euler_angles(orientation_q)  # Convert quaternion to Euler angles
 
-        # Desired orientation - assuming forward facing is represented by yaw = 0
-        if target_yaw == 0:
-            target_yaw = yaw
-        yaw_deviation_threshold = 0.45  # Acceptable yaw deviation threshold
+        #print(orientation_q)
 
         # Calculate distance from the starting position
         distance_from_start = np.sqrt((position.x_val - starting_pose[0])**2 + 
                                     (position.y_val - starting_pose[1])**2 + 
                                     (position.z_val - starting_pose[2])**2)
 
-        # Calculate yaw deviation from target
-        yaw_deviation = abs(yaw - target_yaw)
 
         # Compute position-based reward
         if distance_from_start < 0.5:
-            position_reward = 100
+            position_reward = 10
         else:
-            position_reward = -distance_from_start * 3
+            #position_reward = -distance_from_start 
+            position_reward = 0
 
         # Compute orientation-based reward
-        if yaw_deviation < yaw_deviation_threshold:
-            orientation_reward = 10
+        if (orientation_q.z_val <= -0.1 or orientation_q.z_val >= 0.9) and orientation_q.w_val < 0.5:
+            orientation_reward = 3
         else:
-            orientation_reward = -yaw_deviation * 3  # Scale as needed
+            #orientation_reward = -yaw_deviation 
+            orientation_reward = 0
 
         #print("position_reward:", position_reward)
         #print("orientation_reward:", orientation_reward)
+        #exit()
+            
+        # Survival reward for staying in the air without crashing
+        survival_reward = self.step_count * 1
 
         # Combine rewards
-        reward = position_reward + orientation_reward
+        reward = position_reward + orientation_reward + survival_reward
 
         # Collision check
         done = False
         if self.is_collision():
             done = True
-            reward = -200  # Large penalty for collision
-
-        return reward, done
-
-
-    import math
-
-
-
-    def compute_reward_bac_v2(self):
-        # Hovering
-        global starting_pose
-
-        # Get current position
-        pose = self.drone.simGetVehiclePose().position
-        x1, y1, z1 = pose.x_val, pose.y_val, pose.z_val
-
-        # Initialize starting_pose if not present
-        if 'starting_pose' not in globals():
-            starting_pose = (x1, y1, z1)
-
-        # Calculate distance from the starting position
-        distance_from_start = ((x1 - starting_pose[0])**2 + (y1 - starting_pose[1])**2 + (z1 - starting_pose[2])**2) ** 0.5
-
-        # Reward for hovering (small or no movement from the starting position)
-        if distance_from_start < 0.5:  # Threshold for considering as hovering
-            reward = 1
-        else:
-            reward = -distance_from_start*5  # Penalize for moving away from the start
-
-        # Check for collision
-        done = False
-        if self.is_collision():
-            done = True
-            reward = -100  # Penalty for collision
-
-        #print(reward)
-        return reward, done
-
-
-    def compute_reward_bac(self):
-        #Hmoving forward
-        global previous_x
-
-        # Get current x position
-        pose = self.drone.simGetVehiclePose().position
-        x1 = pose.x_val
-
-        # Compute x difference traveled
-        if 'previous_x' not in globals():
-            previous_x = x1  # Initialize if not present
-        x_difference = previous_x - x1
-        previous_x = x1  # Update previous_x for the next step
-
-        # Use x_difference as the reward
-        reward = x_difference 
-        
-        #keeps wanting to just hover in place, counter this:
-        if reward < 0.1 and reward >= 0: reward = -0.1
-
-        done = False
-        if self.is_collision():
-            done = True
-            reward = -10  # Penalty for collision
-            previous_x = 0
+            reward = -2000  # Large penalty for collision
 
         return reward, done
 
