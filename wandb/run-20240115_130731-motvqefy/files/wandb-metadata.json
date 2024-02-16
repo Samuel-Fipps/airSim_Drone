@@ -1,0 +1,57 @@
+{
+    "os": "Windows-10-10.0.22000-SP0",
+    "python": "3.9.2",
+    "heartbeatAt": "2024-01-15T19:07:32.317299",
+    "startedAt": "2024-01-15T19:07:31.646299",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "f:\\Everything\\New_drone\\loading_main.py",
+    "codePathLocal": "loading_main.py",
+    "codePath": "loading_main.py",
+    "git": {
+        "remote": "https://github.com/Samuel-Fipps/airSim_Drone.git",
+        "commit": "65e8c3cba13a83f511644906222cae87a4bfd848"
+    },
+    "email": "samuelfipps@gmail.com",
+    "root": "F:/Everything/New_drone",
+    "host": "DESKTOP-VP5KEII",
+    "username": "14055",
+    "executable": "C:\\Users\\14055\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
+    "cpu_count": 16,
+    "cpu_count_logical": 24,
+    "cpu_freq": {
+        "current": 3418.0,
+        "min": 0.0,
+        "max": 3418.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3418.0,
+            "min": 0.0,
+            "max": 3418.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 953.8515625,
+            "used": 105.40478515625
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 127.79042434692383
+    }
+}

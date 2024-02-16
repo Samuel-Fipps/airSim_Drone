@@ -1,0 +1,37 @@
+wandb_version: 1
+
+speed:
+  desc: null
+  value: 0.1
+_wandb:
+  desc: null
+  value:
+    code_path: code/loading_main.py
+    python_version: 3.9.2
+    cli_version: 0.16.1
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1705346076.932783
+    t:
+      1:
+      - 1
+      - 2
+      - 3
+      - 41
+      - 55
+      2:
+      - 1
+      - 2
+      - 3
+      - 41
+      - 55
+      3:
+      - 16
+      - 23
+      4: 3.9.2
+      5: 0.16.1
+      8:
+      - 3
+      - 5
+      13: windows-amd64
