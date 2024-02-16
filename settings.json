@@ -1,82 +1,46 @@
 {
-    "SettingsVersion": 1.2,
-    "SimMode": "Multirotor",
-    "ClockSpeed": 40,
-    "EngineSound": false,
-    "ViewMode": "SpringArmChase",
-    
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "ClockSpeed": 1,
+  "EngineSound": false,
+  "ViewMode": "SpringArmChase",
   
-  
-    "Recording": {
-      "RecordOnMove": false,
-      "Folder": "",
-      "Enabled": false,
-      "RecordInterval": 0.1,
-      "Cameras": [
-        {
-          "CameraName": "3",
-          "ImageType": 0,
-          "Width": 1920,
-          "Height": 1080,
-          "PixelsAsFloat": false,
-          "Compress": true 
-        }
-      ]
-    },
-  
-    "CameraDefaults": {
-      "CaptureSettings": [
-        {
-          "camera_name": "3",
-          "ImageType": 0,
-          "Width": 1920,
-          "Height": 1080,
-          "FOV_Degrees": 120,
-          "AutoExposureSpeed": 100,
-          "AutoExposureBias": -1,
-          "AutoExposureMaxBrightness": 0.40,
-          "AutoExposureMinBrightness": 0.03,
-          "MotionBlurAmount": 0,
-          "TargetGamma": 1.0,
-          "ProjectionMode": "",
-          "OrthoWidth": 5.12
-        }
-      ],
-      "Gimbal": {
-        "Stabilization": 1,
-        "Pitch": 1,
-        "Roll": 1
+
+
+  "Recording": {
+    "RecordOnMove": false,
+    "Folder": "",
+    "Enabled": false,
+    "RecordInterval": 0.1,
+    "Cameras": [
+      {
+        "CameraName": "3",
+        "ImageType": 0,
+        "Width": 1280,
+        "Height": 720,
+        "PixelsAsFloat": false,
+        "Compress": true 
       }
-    },
-  
-    "Vehicles": {
-      "Drone1": {
-        "VehicleType": "SimpleFlight",
-          "Cameras": {
-            "MyCamera1": {
-              "CaptureSettings": [ 
-                {
-                "ImageType": 0,
-                "Width": 1920,
-                "Height": 1080,
-                "FOV_Degrees": 120
-                }
-                ],
-                "X": -0.1,
-                "Y": 0,
-                "Z": -0.4,
-                "Pitch": 0,
-                "Roll": 0,
-                "Yaw": 0
-                }
-                },
-                "X": 0,
-                "Y": 0,
-                "Z": 0,
-                "Pitch": 0,
-                "Roll": 0,
-                "Yaw": 0
-                }
-                }
-            }
-  
+    ]
+  },
+
+  "CameraDefaults": {
+    "CaptureSettings": [
+      {
+        "camera_name": "3",
+        "ImageType": 0,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 120,
+        "AutoExposureSpeed": 100,
+        "AutoExposureBias": -1,
+        "AutoExposureMaxBrightness": 0.40,
+        "AutoExposureMinBrightness": 0.03,
+        "MotionBlurAmount": 0,
+        "TargetGamma": 1.0,
+        "ProjectionMode": "",
+        "OrthoWidth": 5.12
+      }
+    ]
+  }
+}

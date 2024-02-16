@@ -1,0 +1,57 @@
+{
+    "os": "Windows-10-10.0.22000-SP0",
+    "python": "3.9.2",
+    "heartbeatAt": "2024-02-08T01:37:24.532672",
+    "startedAt": "2024-02-08T01:37:23.834673",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "f:\\Everything\\PPO-based-Autonomous-Navigation-for-Quadcopters\\loading_main.py",
+    "codePathLocal": "loading_main.py",
+    "codePath": "loading_main.py",
+    "git": {
+        "remote": "https://github.com/Samuel-Fipps/airSim_Drone.git",
+        "commit": "f8625165bd333a5cd601acf6b28588e3d8c3302c"
+    },
+    "email": "samuelfipps@gmail.com",
+    "root": "F:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters",
+    "host": "DESKTOP-VP5KEII",
+    "username": "14055",
+    "executable": "C:\\Users\\14055\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
+    "cpu_count": 16,
+    "cpu_count_logical": 24,
+    "cpu_freq": {
+        "current": 3418.0,
+        "min": 0.0,
+        "max": 3418.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3418.0,
+            "min": 0.0,
+            "max": 3418.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 953.8515625,
+            "used": 125.69287109375
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 127.79042434692383
+    }
+}
