@@ -1,0 +1,17 @@
+Eval num_timesteps=3000, episode_reward=1380.60 +/- 32.48
+Episode length: 81.20 +/- 0.40
+New best mean reward!
+Eval num_timesteps=6000, episode_reward=-79.32 +/- 22.87
+Episode length: 61.16 +/- 0.37
+Traceback (most recent call last):
+  File "f:\Everything\New_drone\main.py", line 213, in <module>
+    model.learn(
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\ppo\ppo.py", line 299, in learn
+    return super(PPO, self).learn(
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\common\on_policy_algorithm.py", line 271, in learn
+    self.train()
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\stable_baselines3\ppo\ppo.py", line 261, in train
+    th.nn.utils.clip_grad_norm_(self.policy.parameters(), self.max_grad_norm)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\nn\utils\clip_grad.py", line 76, in clip_grad_norm_
+    torch._foreach_mul_(grads, clip_coef_clamped.to(device))  # type: ignore[call-overload]
+KeyboardInterrupt

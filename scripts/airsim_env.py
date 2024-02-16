@@ -1,3 +1,4 @@
+# airsim_env.py
 from . import airsim
 import gym
 import numpy as np
@@ -99,7 +100,7 @@ class AirSimDroneEnv(gym.Env):
         #self.drone.simSetCameraPose("0", airsim.Pose(airsim.Vector3r(0, 0, 0), airsim.to_quaternion(math.radians( current_degree-5 ), 0, 0)))
         
 
-        self.drone.moveByRollPitchYawrateZAsync(0, 0, 6.3, self.drone.getMultirotorState().kinematics_estimated.position.z_val, 1).join()
+        self.drone.moveByRollPitchYawrateZAsync(0, 0, 0, self.drone.getMultirotorState().kinematics_estimated.position.z_val, 1).join()
         self.drone.moveToPositionAsync(-0.55265, 0.9786, -1.0225, 5).join()
         time.sleep(1)
         # Get collision time stamp
@@ -164,8 +165,41 @@ class AirSimDroneEnv(gym.Env):
     
 
     def compute_reward(self):
+        global previous_x
+
+        # Get current x position
+        pose = self.drone.simGetVehiclePose().position
+        x1 = pose.x_val
+
+        # Compute x difference traveled
+        if 'previous_x' not in globals():
+            previous_x = x1  # Initialize if not present
+        x_difference = previous_x - x1
+        previous_x = x1  # Update previous_x for the next step
+
+        # Use x_difference as the reward
+        reward = x_difference 
+        
+        #keeps wanting to just hover in place, counter this:
+        if reward < 0.1 and reward >= 0: reward = -0.1
+
+        done = False
+        if self.is_collision():
+            done = True
+            reward = -10  # Penalty for collision
+            previous_x = 0
+
+        return reward, done
+    
+    
+    def compute_reward_old(self):
         global starting_pose
         self.step_count += 1
+
+        # Check if the step count has reached 150, end the episode successfully
+        if self.step_count >= 150:
+            self.step_count = 0
+            return 2500, True  # Assign a high reward for successful completion and set 'done' to True
 
         # Get current position
         pose = self.drone.simGetVehiclePose().position
@@ -192,18 +226,17 @@ class AirSimDroneEnv(gym.Env):
         if distance_from_start < 0.5:
             position_reward = 10
         else:
-            #position_reward = -distance_from_start 
-            position_reward = 0
+            position_reward = -distance_from_start 
+            #position_reward = 0
 
         # Compute orientation-based reward
         if (orientation_q.z_val <= -0.1 or orientation_q.z_val >= 0.9) and orientation_q.w_val < 0.5:
-            orientation_reward = 3
+            orientation_reward = 15*5
         else:
-            #orientation_reward = -yaw_deviation 
-            orientation_reward = 0
+            orientation_reward = -30*5
+            #orientation_reward = 0
 
-        #print("position_reward:", position_reward)
-        #print("orientation_reward:", orientation_reward)
+        #print("position_reward:", position_reward, "orientation_reward:", orientation_reward)
         #exit()
             
         # Survival reward for staying in the air without crashing
@@ -216,7 +249,9 @@ class AirSimDroneEnv(gym.Env):
         done = False
         if self.is_collision():
             done = True
-            reward = -2000  # Large penalty for collision
+            #reward = -2000  # Large penalty for collision
+            reward = -50000  # Large penalty for collision
+            self.step_count = 0
 
         return reward, done
 

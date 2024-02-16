@@ -1,0 +1,114 @@
+2024-02-09 19:19:45,115 INFO    StreamThr :1344 [internal.py:wandb_internal():86] W&B internal server running at pid: 1344, started at: 2024-02-09 19:19:45.112165
+2024-02-09 19:19:45,116 DEBUG   HandlerThread:1344 [handler.py:handle_request():146] handle_request: status
+2024-02-09 19:19:45,117 INFO    WriterThread:1344 [datastore.py:open_for_write():85] open: Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\run-skjsxeg7.wandb
+2024-02-09 19:19:45,123 DEBUG   SenderThread:1344 [sender.py:send():382] send: header
+2024-02-09 19:19:45,173 DEBUG   SenderThread:1344 [sender.py:send():382] send: run
+2024-02-09 19:19:45,426 INFO    SenderThread:1344 [dir_watcher.py:__init__():211] watching files in: Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files
+2024-02-09 19:19:45,429 INFO    SenderThread:1344 [sender.py:_start_run_threads():1136] run started: skjsxeg7 with start time 1707527985.114165
+2024-02-09 19:19:45,462 DEBUG   HandlerThread:1344 [handler.py:handle_request():146] handle_request: check_version
+2024-02-09 19:19:45,463 DEBUG   SenderThread:1344 [sender.py:send_request():409] send_request: check_version
+2024-02-09 19:19:45,683 DEBUG   HandlerThread:1344 [handler.py:handle_request():146] handle_request: run_start
+2024-02-09 19:19:45,801 DEBUG   HandlerThread:1344 [system_info.py:__init__():32] System info init
+2024-02-09 19:19:45,802 DEBUG   HandlerThread:1344 [system_info.py:__init__():47] System info init done
+2024-02-09 19:19:45,803 INFO    HandlerThread:1344 [system_monitor.py:start():194] Starting system monitor
+2024-02-09 19:19:45,803 INFO    SystemMonitor:1344 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-02-09 19:19:45,803 INFO    HandlerThread:1344 [system_monitor.py:probe():214] Collecting system info
+2024-02-09 19:19:45,806 INFO    SystemMonitor:1344 [interfaces.py:start():190] Started cpu monitoring
+2024-02-09 19:19:45,807 INFO    SystemMonitor:1344 [interfaces.py:start():190] Started disk monitoring
+2024-02-09 19:19:45,808 INFO    SystemMonitor:1344 [interfaces.py:start():190] Started gpu monitoring
+2024-02-09 19:19:45,812 INFO    SystemMonitor:1344 [interfaces.py:start():190] Started memory monitoring
+2024-02-09 19:19:45,818 INFO    SystemMonitor:1344 [interfaces.py:start():190] Started network monitoring
+2024-02-09 19:19:45,829 DEBUG   HandlerThread:1344 [system_info.py:probe():196] Probing system
+2024-02-09 19:19:45,859 DEBUG   HandlerThread:1344 [system_info.py:_probe_git():181] Probing git
+2024-02-09 19:19:45,948 ERROR   HandlerThread:1344 [gitlib.py:root():92] git root error: Cmd('git') failed due to: exit code(128)
+  cmdline: git rev-parse --show-toplevel
+  stderr: 'fatal: detected dubious ownership in repository at '//192.168.0.215/raid/samuel/Home/drone/Everything/New_drone'
+'//192.168.0.215/raid/samuel/Home/drone/Everything/New_drone' is owned by:
+	'S-1-5-21-2354520550-3393636228-2161591843-501'
+but the current user is:
+	'S-1-5-21-3788502844-3331528841-2909000529-1001'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory '%(prefix)///192.168.0.215/raid/samuel/Home/drone/Everything/New_drone''
+2024-02-09 19:19:45,948 DEBUG   HandlerThread:1344 [system_info.py:_probe_git():189] Probing git done
+2024-02-09 19:19:45,949 DEBUG   HandlerThread:1344 [system_info.py:probe():244] Probing system done
+2024-02-09 19:19:45,949 DEBUG   HandlerThread:1344 [system_monitor.py:probe():223] {'os': 'Windows-10-10.0.22000-SP0', 'python': '3.9.2', 'heartbeatAt': '2024-02-10T01:19:45.830165', 'startedAt': '2024-02-10T01:19:45.048165', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'z:\\samuel\\Home\\drone\\Everything\\New_drone\\loading_main.py', 'codePathLocal': 'loading_main.py', 'codePath': 'loading_main.py', 'git': {'remote': 'https://github.com/Samuel-Fipps/airSim_Drone.git', 'commit': None}, 'email': 'samuelfipps@gmail.com', 'root': 'Z:\\samuel\\Home\\drone\\Everything\\New_drone', 'host': 'DESKTOP-VP5KEII', 'username': '14055', 'executable': 'C:\\Users\\14055\\AppData\\Local\\Programs\\Python\\Python39\\python.exe', 'cpu_count': 16, 'cpu_count_logical': 24, 'cpu_freq': {'current': 3418.0, 'min': 0.0, 'max': 3418.0}, 'cpu_freq_per_core': [{'current': 3418.0, 'min': 0.0, 'max': 3418.0}], 'disk': {'/': {'total': 44520.554931640625, 'used': 12124.58935546875}}, 'gpu': 'NVIDIA GeForce RTX 3090', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3090', 'memory_total': 25769803776}], 'memory': {'total': 127.79042434692383}}
+2024-02-09 19:19:45,949 INFO    HandlerThread:1344 [system_monitor.py:probe():224] Finished collecting system info
+2024-02-09 19:19:45,950 INFO    HandlerThread:1344 [system_monitor.py:probe():227] Publishing system info
+2024-02-09 19:19:45,950 DEBUG   HandlerThread:1344 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2024-02-09 19:19:45,954 DEBUG   HandlerThread:1344 [system_info.py:_save_pip():68] Saving pip packages done
+2024-02-09 19:19:45,954 DEBUG   HandlerThread:1344 [system_info.py:_save_code():90] Saving code
+2024-02-09 19:19:45,983 ERROR   HandlerThread:1344 [gitlib.py:root():92] git root error: Cmd('git') failed due to: exit code(128)
+  cmdline: git rev-parse --show-toplevel
+  stderr: 'fatal: detected dubious ownership in repository at '//192.168.0.215/raid/samuel/Home/drone/Everything/New_drone'
+'//192.168.0.215/raid/samuel/Home/drone/Everything/New_drone' is owned by:
+	'S-1-5-21-2354520550-3393636228-2161591843-501'
+but the current user is:
+	'S-1-5-21-3788502844-3331528841-2909000529-1001'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory '%(prefix)///192.168.0.215/raid/samuel/Home/drone/Everything/New_drone''
+2024-02-09 19:19:45,994 DEBUG   HandlerThread:1344 [system_info.py:_save_code():111] Saving code done
+2024-02-09 19:19:45,996 DEBUG   HandlerThread:1344 [system_info.py:_save_patches():128] Saving git patches
+2024-02-09 19:19:46,042 ERROR   HandlerThread:1344 [gitlib.py:root():92] git root error: Cmd('git') failed due to: exit code(128)
+  cmdline: git rev-parse --show-toplevel
+  stderr: 'fatal: detected dubious ownership in repository at '//192.168.0.215/raid/samuel/Home/drone/Everything/New_drone'
+'//192.168.0.215/raid/samuel/Home/drone/Everything/New_drone' is owned by:
+	'S-1-5-21-2354520550-3393636228-2161591843-501'
+but the current user is:
+	'S-1-5-21-3788502844-3331528841-2909000529-1001'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory '%(prefix)///192.168.0.215/raid/samuel/Home/drone/Everything/New_drone''
+2024-02-09 19:19:46,447 INFO    Thread-16 :1344 [dir_watcher.py:_on_file_created():271] file/dir created: Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files\code\loading_main.py
+2024-02-09 19:19:46,448 INFO    Thread-16 :1344 [dir_watcher.py:_on_file_created():271] file/dir created: Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files\requirements.txt
+2024-02-09 19:19:46,449 INFO    Thread-16 :1344 [dir_watcher.py:_on_file_created():271] file/dir created: Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files\code
+2024-02-09 19:19:46,472 INFO    WriterThread:1344 [datastore.py:close():294] close: Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\run-skjsxeg7.wandb
+2024-02-09 19:19:46,678 INFO    SenderThread:1344 [sender.py:finish():1548] shutting down sender
+2024-02-09 19:19:46,680 INFO    SenderThread:1344 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-02-09 19:19:47,453 INFO    SenderThread:1344 [dir_watcher.py:finish():388] scan: Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files
+2024-02-09 19:19:47,453 INFO    SenderThread:1344 [dir_watcher.py:finish():402] scan save: Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files\config.yaml config.yaml
+2024-02-09 19:19:47,454 INFO    SenderThread:1344 [dir_watcher.py:finish():402] scan save: Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files\requirements.txt requirements.txt
+2024-02-09 19:19:47,456 INFO    SenderThread:1344 [dir_watcher.py:finish():402] scan save: Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files\code\loading_main.py code/loading_main.py
+2024-02-09 19:19:47,457 INFO    SenderThread:1344 [file_pusher.py:finish():175] shutting down file pusher
+2024-02-09 19:19:47,458 INFO    SenderThread:1344 [file_pusher.py:join():181] waiting for file pusher
+2024-02-09 19:19:47,812 INFO    wandb-upload_0:1344 [upload_job.py:push():131] Uploaded file Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files\config.yaml
+2024-02-09 19:19:47,867 INFO    wandb-upload_1:1344 [upload_job.py:push():131] Uploaded file Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files\requirements.txt
+2024-02-09 19:19:47,889 INFO    wandb-upload_2:1344 [upload_job.py:push():131] Uploaded file Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\files\code\loading_main.py
+2024-02-09 19:19:48,468 INFO    SenderThread:1344 [file_stream.py:finish():595] file stream finish called
+2024-02-09 19:19:48,593 INFO    SenderThread:1344 [file_stream.py:finish():599] file stream finish is done
+2024-02-09 19:19:48,760 ERROR   StreamThr :1344 [internal.py:wandb_internal():174] Thread HandlerThread:
+Traceback (most recent call last):
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\internal\internal_util.py", line 49, in run
+    self._run()
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\internal\internal_util.py", line 100, in _run
+    self._process(record)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\internal\internal.py", line 279, in _process
+    self._hm.handle(record)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\internal\handler.py", line 138, in handle
+    handler(record)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\internal\handler.py", line 148, in handle_request
+    handler(record)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\internal\handler.py", line 683, in handle_request_run_start
+    self._system_monitor.probe(publish=True)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\internal\system\system_monitor.py", line 228, in probe
+    self.system_info.publish(system_info)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\internal\system\system_info.py", line 255, in publish
+    self._save_patches()
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\internal\system\system_info.py", line 146, in _save_patches
+    upstream_commit = self.git.get_upstream_fork_point()
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\lib\gitlib.py", line 200, in get_upstream_fork_point
+    possible_relatives.append(tracking_branch.commit)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\git\refs\symbolic.py", line 226, in _get_commit
+    obj = self._get_object()
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\git\refs\symbolic.py", line 219, in _get_object
+    return Object.new_from_sha(self.repo, hex_to_bin(self.dereference_recursive(self.repo, self.path)))
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\git\objects\base.py", line 94, in new_from_sha
+    oinfo = repo.odb.info(sha1)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\git\db.py", line 40, in info
+    hexsha, typename, size = self._git.get_object_header(bin_to_hex(binsha))
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\git\cmd.py", line 1383, in get_object_header
+    return self.__get_object_header(cmd, ref)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\git\cmd.py", line 1369, in __get_object_header
+    cmd.stdin.flush()
+OSError: [Errno 22] Invalid argument

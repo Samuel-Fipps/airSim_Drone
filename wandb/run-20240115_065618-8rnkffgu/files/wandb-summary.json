@@ -1,0 +1,1 @@
+{"eval/mean_reward": 1400.306242638398, "eval/std_reward": 5165.239876823904, "eval/mean_length": 61.03180212014134, "eval/std_length": 40.12445511069551, "_timestamp": 1705344669.8276002, "_runtime": 21290.758134126663, "_step": 5, "_wandb": {"runtime": 21930}}

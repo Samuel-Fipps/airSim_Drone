@@ -1,0 +1,32 @@
+2024-02-09 19:19:45,104 INFO    MainThread:11660 [wandb_setup.py:_flush():76] Current SDK version is 0.16.1
+2024-02-09 19:19:45,105 INFO    MainThread:11660 [wandb_setup.py:_flush():76] Configure stats pid to 11660
+2024-02-09 19:19:45,106 INFO    MainThread:11660 [wandb_setup.py:_flush():76] Loading settings from C:\Users\14055\.config\wandb\settings
+2024-02-09 19:19:45,106 INFO    MainThread:11660 [wandb_setup.py:_flush():76] Loading settings from Z:\samuel\Home\drone\Everything\New_drone\wandb\settings
+2024-02-09 19:19:45,106 INFO    MainThread:11660 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-02-09 19:19:45,107 INFO    MainThread:11660 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-02-09 19:19:45,108 INFO    MainThread:11660 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'loading_main.py', 'program_abspath': 'z:\\samuel\\Home\\drone\\Everything\\New_drone\\loading_main.py', 'program': 'z:\\samuel\\Home\\drone\\Everything\\New_drone\\loading_main.py'}
+2024-02-09 19:19:45,108 INFO    MainThread:11660 [wandb_init.py:_log_setup():524] Logging user logs to Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\logs\debug.log
+2024-02-09 19:19:45,109 INFO    MainThread:11660 [wandb_init.py:_log_setup():525] Logging internal logs to Z:\samuel\Home\drone\Everything\New_drone\wandb\run-20240209_191945-skjsxeg7\logs\debug-internal.log
+2024-02-09 19:19:45,109 INFO    MainThread:11660 [wandb_init.py:init():564] calling init triggers
+2024-02-09 19:19:45,109 INFO    MainThread:11660 [wandb_init.py:init():571] wandb.init called with sweep_config: {}
+config: {'speed': 0.1}
+2024-02-09 19:19:45,110 INFO    MainThread:11660 [wandb_init.py:init():614] starting backend
+2024-02-09 19:19:45,110 INFO    MainThread:11660 [wandb_init.py:init():618] setting up manager
+2024-02-09 19:19:45,111 INFO    MainThread:11660 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=spawn, using: spawn
+2024-02-09 19:19:45,113 INFO    MainThread:11660 [wandb_init.py:init():624] backend started and connected
+2024-02-09 19:19:45,117 INFO    MainThread:11660 [wandb_init.py:init():716] updated telemetry
+2024-02-09 19:19:45,172 INFO    MainThread:11660 [wandb_init.py:init():749] communicating run to backend with 90.0 second timeout
+2024-02-09 19:19:45,459 INFO    MainThread:11660 [wandb_run.py:_on_init():2254] communicating current version
+2024-02-09 19:19:45,675 INFO    MainThread:11660 [wandb_run.py:_on_init():2263] got version response upgrade_message: "wandb version 0.16.3 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-02-09 19:19:45,677 INFO    MainThread:11660 [wandb_init.py:init():800] starting run threads in backend
+2024-02-09 19:19:48,872 WARNING MsgRouterThr:11660 [router.py:message_loop():77] message_loop has been closed
+2024-02-09 19:19:50,844 ERROR   MainThread:11660 [wandb_init.py:init():1188] transport failed
+Traceback (most recent call last):
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\wandb_init.py", line 1170, in init
+    run = wi.init()
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\wandb_init.py", line 811, in init
+    run_start_result = run_start_handle.wait(timeout=30)
+  File "C:\Users\14055\AppData\Local\Programs\Python\Python39\lib\site-packages\wandb\sdk\lib\mailbox.py", line 281, in wait
+    raise MailboxError("transport failed")
+wandb.sdk.lib.mailbox.MailboxError: transport failed
