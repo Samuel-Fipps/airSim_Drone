@@ -192,7 +192,7 @@ callbacks = []
 eval_callback = CustomEvalCallback(
     env,
     callback_on_new_best=None,
-    n_eval_episodes=100,
+    n_eval_episodes=10,
     best_model_save_path=".",
     log_path=".",
     eval_freq=1025,
