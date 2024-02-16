@@ -1,0 +1,197 @@
+2023-12-21 09:51:26,087 INFO    StreamThr :14776 [internal.py:wandb_internal():86] W&B internal server running at pid: 14776, started at: 2023-12-21 09:51:26.087265
+2023-12-21 09:51:26,088 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: status
+2023-12-21 09:51:26,091 INFO    WriterThread:14776 [datastore.py:open_for_write():85] open: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\run-0i1d89mf.wandb
+2023-12-21 09:51:26,091 DEBUG   SenderThread:14776 [sender.py:send():382] send: header
+2023-12-21 09:51:26,111 DEBUG   SenderThread:14776 [sender.py:send():382] send: run
+2023-12-21 09:51:26,381 INFO    SenderThread:14776 [dir_watcher.py:__init__():211] watching files in: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files
+2023-12-21 09:51:26,381 INFO    SenderThread:14776 [sender.py:_start_run_threads():1136] run started: 0i1d89mf with start time 1703173886.088264
+2023-12-21 09:51:26,387 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: check_version
+2023-12-21 09:51:26,387 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: check_version
+2023-12-21 09:51:26,586 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: run_start
+2023-12-21 09:51:26,611 DEBUG   HandlerThread:14776 [system_info.py:__init__():32] System info init
+2023-12-21 09:51:26,611 DEBUG   HandlerThread:14776 [system_info.py:__init__():47] System info init done
+2023-12-21 09:51:26,611 INFO    HandlerThread:14776 [system_monitor.py:start():194] Starting system monitor
+2023-12-21 09:51:26,611 INFO    SystemMonitor:14776 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2023-12-21 09:51:26,611 INFO    HandlerThread:14776 [system_monitor.py:probe():214] Collecting system info
+2023-12-21 09:51:26,614 INFO    SystemMonitor:14776 [interfaces.py:start():190] Started cpu monitoring
+2023-12-21 09:51:26,615 INFO    SystemMonitor:14776 [interfaces.py:start():190] Started disk monitoring
+2023-12-21 09:51:26,615 INFO    SystemMonitor:14776 [interfaces.py:start():190] Started gpu monitoring
+2023-12-21 09:51:26,620 INFO    SystemMonitor:14776 [interfaces.py:start():190] Started memory monitoring
+2023-12-21 09:51:26,627 INFO    SystemMonitor:14776 [interfaces.py:start():190] Started network monitoring
+2023-12-21 09:51:26,635 DEBUG   HandlerThread:14776 [system_info.py:probe():196] Probing system
+2023-12-21 09:51:26,636 DEBUG   HandlerThread:14776 [system_info.py:_probe_git():181] Probing git
+2023-12-21 09:51:26,676 DEBUG   HandlerThread:14776 [system_info.py:_probe_git():189] Probing git done
+2023-12-21 09:51:26,676 DEBUG   HandlerThread:14776 [system_info.py:probe():244] Probing system done
+2023-12-21 09:51:26,676 DEBUG   HandlerThread:14776 [system_monitor.py:probe():223] {'os': 'Windows-10-10.0.22621-SP0', 'python': '3.8.0', 'heartbeatAt': '2023-12-21T15:51:26.635094', 'startedAt': '2023-12-21T15:51:26.021518', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'loading_main.py', 'codePathLocal': 'loading_main.py', 'codePath': 'loading_main.py', 'git': {'remote': 'https://github.com/Samuel-Fipps/airSim_Drone.git', 'commit': 'f8625165bd333a5cd601acf6b28588e3d8c3302c'}, 'email': None, 'root': 'D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters', 'host': 'DESKTOP-81K5R6V', 'username': 'cymstar_user', 'executable': 'C:\\Users\\cymstar_user\\AppData\\Local\\Programs\\Python\\Python38\\python.exe', 'cpu_count': 24, 'cpu_count_logical': 32, 'cpu_freq': {'current': 2000.0, 'min': 0.0, 'max': 2000.0}, 'cpu_freq_per_core': [{'current': 2000.0, 'min': 0.0, 'max': 2000.0}], 'disk': {'/': {'total': 953.8515625, 'used': 86.5537109375}}, 'gpu': 'NVIDIA GeForce RTX 4090', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}], 'memory': {'total': 31.72442626953125}}
+2023-12-21 09:51:26,676 INFO    HandlerThread:14776 [system_monitor.py:probe():224] Finished collecting system info
+2023-12-21 09:51:26,676 INFO    HandlerThread:14776 [system_monitor.py:probe():227] Publishing system info
+2023-12-21 09:51:26,676 DEBUG   HandlerThread:14776 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2023-12-21 09:51:26,677 DEBUG   HandlerThread:14776 [system_info.py:_save_pip():68] Saving pip packages done
+2023-12-21 09:51:26,677 DEBUG   HandlerThread:14776 [system_info.py:_save_code():90] Saving code
+2023-12-21 09:51:26,712 DEBUG   HandlerThread:14776 [system_info.py:_save_code():111] Saving code done
+2023-12-21 09:51:26,712 DEBUG   HandlerThread:14776 [system_info.py:_save_patches():128] Saving git patches
+2023-12-21 09:51:26,854 DEBUG   HandlerThread:14776 [system_info.py:_save_patches():170] Saving git patches done
+2023-12-21 09:51:26,855 INFO    HandlerThread:14776 [system_monitor.py:probe():229] Finished publishing system info
+2023-12-21 09:51:26,861 DEBUG   SenderThread:14776 [sender.py:send():382] send: files
+2023-12-21 09:51:26,861 INFO    SenderThread:14776 [sender.py:_save_file():1392] saving file wandb-metadata.json with policy now
+2023-12-21 09:51:26,861 INFO    SenderThread:14776 [sender.py:_save_file():1392] saving file code\loading_main.py with policy now
+2023-12-21 09:51:26,861 INFO    SenderThread:14776 [sender.py:_save_file():1392] saving file diff.patch with policy now
+2023-12-21 09:51:26,865 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: stop_status
+2023-12-21 09:51:26,865 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: stop_status
+2023-12-21 09:51:26,866 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: internal_messages
+2023-12-21 09:51:26,930 DEBUG   SenderThread:14776 [sender.py:send():382] send: telemetry
+2023-12-21 09:51:27,337 INFO    wandb-upload_2:14776 [upload_job.py:push():131] Uploaded file C:\Users\CYMSTA~1\AppData\Local\Temp\tmp1_glzqpbwandb\7y7zanzr-diff.patch
+2023-12-21 09:51:27,338 INFO    wandb-upload_0:14776 [upload_job.py:push():131] Uploaded file C:\Users\CYMSTA~1\AppData\Local\Temp\tmp1_glzqpbwandb\mkpffl2y-wandb-metadata.json
+2023-12-21 09:51:27,338 INFO    wandb-upload_1:14776 [upload_job.py:push():131] Uploaded file C:\Users\CYMSTA~1\AppData\Local\Temp\tmp1_glzqpbwandb\a3050s1c-code/loading_main.py
+2023-12-21 09:51:27,384 INFO    Thread-16 :14776 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\requirements.txt
+2023-12-21 09:51:27,384 INFO    Thread-16 :14776 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\wandb-metadata.json
+2023-12-21 09:51:27,384 INFO    Thread-16 :14776 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\diff.patch
+2023-12-21 09:51:27,384 INFO    Thread-16 :14776 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\code\loading_main.py
+2023-12-21 09:51:27,384 INFO    Thread-16 :14776 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\code
+2023-12-21 09:51:31,972 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: status_report
+2023-12-21 09:51:37,008 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: status_report
+2023-12-21 09:51:41,874 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: stop_status
+2023-12-21 09:51:41,874 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: internal_messages
+2023-12-21 09:51:41,874 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: stop_status
+2023-12-21 09:51:42,018 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: status_report
+2023-12-21 09:51:47,064 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: status_report
+2023-12-21 09:51:52,092 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: status_report
+2023-12-21 09:51:55,442 DEBUG   SenderThread:14776 [sender.py:send():382] send: exit
+2023-12-21 09:51:55,442 INFO    SenderThread:14776 [sender.py:send_exit():589] handling exit code: 1
+2023-12-21 09:51:55,443 INFO    SenderThread:14776 [sender.py:send_exit():591] handling runtime: 28
+2023-12-21 09:51:55,444 INFO    SenderThread:14776 [sender.py:_save_file():1392] saving file wandb-summary.json with policy end
+2023-12-21 09:51:55,444 INFO    SenderThread:14776 [sender.py:send_exit():597] send defer
+2023-12-21 09:51:55,444 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:55,444 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 0
+2023-12-21 09:51:55,444 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:55,444 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 0
+2023-12-21 09:51:55,444 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 1
+2023-12-21 09:51:55,444 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:55,444 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 1
+2023-12-21 09:51:55,445 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:55,445 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 1
+2023-12-21 09:51:55,445 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 2
+2023-12-21 09:51:55,445 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:55,445 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 2
+2023-12-21 09:51:55,445 INFO    HandlerThread:14776 [system_monitor.py:finish():203] Stopping system monitor
+2023-12-21 09:51:55,445 DEBUG   SystemMonitor:14776 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2023-12-21 09:51:55,445 DEBUG   SystemMonitor:14776 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2023-12-21 09:51:55,445 DEBUG   SystemMonitor:14776 [system_monitor.py:_start():183] Publishing last batch of metrics
+2023-12-21 09:51:55,451 INFO    HandlerThread:14776 [interfaces.py:finish():202] Joined cpu monitor
+2023-12-21 09:51:55,451 INFO    HandlerThread:14776 [interfaces.py:finish():202] Joined disk monitor
+2023-12-21 09:51:55,484 INFO    HandlerThread:14776 [interfaces.py:finish():202] Joined gpu monitor
+2023-12-21 09:51:55,484 INFO    HandlerThread:14776 [interfaces.py:finish():202] Joined memory monitor
+2023-12-21 09:51:55,484 INFO    HandlerThread:14776 [interfaces.py:finish():202] Joined network monitor
+2023-12-21 09:51:55,485 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:55,485 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 2
+2023-12-21 09:51:55,485 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 3
+2023-12-21 09:51:55,485 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:55,485 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 3
+2023-12-21 09:51:55,485 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:55,485 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 3
+2023-12-21 09:51:55,485 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 4
+2023-12-21 09:51:55,485 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:55,485 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 4
+2023-12-21 09:51:55,485 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:55,485 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 4
+2023-12-21 09:51:55,485 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 5
+2023-12-21 09:51:55,485 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:55,485 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 5
+2023-12-21 09:51:55,485 DEBUG   SenderThread:14776 [sender.py:send():382] send: summary
+2023-12-21 09:51:55,487 INFO    SenderThread:14776 [sender.py:_save_file():1392] saving file wandb-summary.json with policy end
+2023-12-21 09:51:55,487 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:55,487 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 5
+2023-12-21 09:51:55,487 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 6
+2023-12-21 09:51:55,487 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:55,487 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 6
+2023-12-21 09:51:55,487 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:55,487 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 6
+2023-12-21 09:51:55,489 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: status_report
+2023-12-21 09:51:55,588 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 7
+2023-12-21 09:51:55,588 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:55,588 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 7
+2023-12-21 09:51:55,588 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:55,588 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 7
+2023-12-21 09:51:55,596 INFO    Thread-16 :14776 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\config.yaml
+2023-12-21 09:51:55,596 INFO    Thread-16 :14776 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\wandb-summary.json
+2023-12-21 09:51:55,596 INFO    Thread-16 :14776 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\output.log
+2023-12-21 09:51:56,452 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: poll_exit
+2023-12-21 09:51:57,497 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 8
+2023-12-21 09:51:57,497 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: poll_exit
+2023-12-21 09:51:57,497 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:57,498 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 8
+2023-12-21 09:51:57,498 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:57,498 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 8
+2023-12-21 09:51:57,498 INFO    SenderThread:14776 [job_builder.py:build():298] Attempting to build job artifact
+2023-12-21 09:51:57,498 INFO    SenderThread:14776 [job_builder.py:_get_source_type():428] is repo sourced job
+2023-12-21 09:51:57,567 INFO    SenderThread:14776 [job_builder.py:build():404] adding wandb-job metadata file
+2023-12-21 09:51:57,572 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 9
+2023-12-21 09:51:57,572 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:57,572 DEBUG   SenderThread:14776 [sender.py:send():382] send: artifact
+2023-12-21 09:51:57,572 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 9
+2023-12-21 09:51:57,619 INFO    Thread-16 :14776 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\output.log
+2023-12-21 09:51:57,921 INFO    SenderThread:14776 [sender.py:send_artifact():1470] sent artifact job-https___github.com_Samuel-Fipps_airSim_Drone.git_loading_main.py - {'id': 'QXJ0aWZhY3Q6NjcxOTg0MDMz', 'state': 'COMMITTED', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjEyNTA5MjkzMg==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NjcxOTg0MDMz', 'versionIndex': 1}}}
+2023-12-21 09:51:57,921 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:57,921 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 9
+2023-12-21 09:51:57,921 INFO    SenderThread:14776 [dir_watcher.py:finish():358] shutting down directory watcher
+2023-12-21 09:51:58,633 INFO    SenderThread:14776 [dir_watcher.py:finish():388] scan: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files
+2023-12-21 09:51:58,633 INFO    SenderThread:14776 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\config.yaml config.yaml
+2023-12-21 09:51:58,633 INFO    SenderThread:14776 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\requirements.txt requirements.txt
+2023-12-21 09:51:58,634 INFO    SenderThread:14776 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\diff.patch diff.patch
+2023-12-21 09:51:58,634 INFO    SenderThread:14776 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\wandb-metadata.json wandb-metadata.json
+2023-12-21 09:51:58,635 INFO    SenderThread:14776 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\output.log output.log
+2023-12-21 09:51:58,636 INFO    SenderThread:14776 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\wandb-summary.json wandb-summary.json
+2023-12-21 09:51:58,638 INFO    SenderThread:14776 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\code\loading_main.py code/loading_main.py
+2023-12-21 09:51:58,638 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 10
+2023-12-21 09:51:58,639 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:58,639 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 10
+2023-12-21 09:51:58,639 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:58,639 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 10
+2023-12-21 09:51:58,639 INFO    SenderThread:14776 [file_pusher.py:finish():175] shutting down file pusher
+2023-12-21 09:51:58,859 INFO    wandb-upload_0:14776 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\output.log
+2023-12-21 09:51:58,859 INFO    wandb-upload_3:14776 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\wandb-summary.json
+2023-12-21 09:51:58,881 INFO    wandb-upload_2:14776 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\config.yaml
+2023-12-21 09:51:58,940 INFO    wandb-upload_1:14776 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\files\requirements.txt
+2023-12-21 09:51:59,152 INFO    Thread-15 :14776 [sender.py:transition_state():617] send defer: 11
+2023-12-21 09:51:59,152 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:59,152 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 11
+2023-12-21 09:51:59,152 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:59,152 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 11
+2023-12-21 09:51:59,152 INFO    SenderThread:14776 [file_pusher.py:join():181] waiting for file pusher
+2023-12-21 09:51:59,152 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 12
+2023-12-21 09:51:59,152 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:59,152 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 12
+2023-12-21 09:51:59,153 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:59,153 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 12
+2023-12-21 09:51:59,153 INFO    SenderThread:14776 [file_stream.py:finish():595] file stream finish called
+2023-12-21 09:51:59,227 INFO    SenderThread:14776 [file_stream.py:finish():599] file stream finish is done
+2023-12-21 09:51:59,227 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 13
+2023-12-21 09:51:59,227 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:59,227 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 13
+2023-12-21 09:51:59,227 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:59,227 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 13
+2023-12-21 09:51:59,227 INFO    SenderThread:14776 [sender.py:transition_state():617] send defer: 14
+2023-12-21 09:51:59,227 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:51:59,228 INFO    HandlerThread:14776 [handler.py:handle_request_defer():172] handle defer: 14
+2023-12-21 09:51:59,228 DEBUG   SenderThread:14776 [sender.py:send():382] send: final
+2023-12-21 09:51:59,228 DEBUG   SenderThread:14776 [sender.py:send():382] send: footer
+2023-12-21 09:51:59,228 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:51:59,228 INFO    SenderThread:14776 [sender.py:send_request_defer():613] handle sender defer: 14
+2023-12-21 09:51:59,228 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: poll_exit
+2023-12-21 09:51:59,228 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: server_info
+2023-12-21 09:51:59,228 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: get_summary
+2023-12-21 09:51:59,228 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: sampled_history
+2023-12-21 09:51:59,228 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: internal_messages
+2023-12-21 09:51:59,229 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: poll_exit
+2023-12-21 09:51:59,229 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: server_info
+2023-12-21 09:51:59,229 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: job_info
+2023-12-21 09:51:59,274 DEBUG   SenderThread:14776 [sender.py:send_request():409] send_request: job_info
+2023-12-21 09:51:59,275 INFO    MainThread:14776 [wandb_run.py:_footer_history_summary_info():3837] rendering history
+2023-12-21 09:51:59,275 INFO    MainThread:14776 [wandb_run.py:_footer_history_summary_info():3869] rendering summary
+2023-12-21 09:51:59,275 INFO    MainThread:14776 [wandb_run.py:_footer_sync_info():3796] logging synced files
+2023-12-21 09:51:59,280 DEBUG   HandlerThread:14776 [handler.py:handle_request():146] handle_request: shutdown
+2023-12-21 09:51:59,280 INFO    HandlerThread:14776 [handler.py:finish():866] shutting down handler
+2023-12-21 09:52:00,233 INFO    WriterThread:14776 [datastore.py:close():294] close: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_095126-0i1d89mf\run-0i1d89mf.wandb
+2023-12-21 09:52:00,279 INFO    SenderThread:14776 [sender.py:finish():1548] shutting down sender
+2023-12-21 09:52:00,279 INFO    SenderThread:14776 [file_pusher.py:finish():175] shutting down file pusher
+2023-12-21 09:52:00,279 INFO    SenderThread:14776 [file_pusher.py:join():181] waiting for file pusher

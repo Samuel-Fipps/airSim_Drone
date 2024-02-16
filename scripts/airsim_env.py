@@ -5,7 +5,7 @@ import airsim
 import math
 import time
 import gym
-
+import cv2
 
 first_pass = 1
 counter = 0
@@ -27,24 +27,39 @@ elapsed_time_2 =0
 step_counter = 0
 continues_to_be_bad = 1
 within_distance_counter = 0 
+pic_counter = 0
+debug_counter = 0
 
+def interpolate_velocity(current_v, target_v, steps=10):
+    return np.linspace(current_v, target_v, steps)
 
 class AirSimDroneEnv(gym.Env):
-    def __init__(self, ip_address, image_shape, env_config):
+    def __init__(self, ip_address, image_shape, env_config, step_length):
         self.image_shape = image_shape
         self.sections = env_config["sections"]
+
+        self.step_length = step_length
 
         self.drone = airsim.MultirotorClient(ip=ip_address)
         self.observation_space = gym.spaces.Box(low=0, high=255, shape=self.image_shape, dtype=np.uint8)
         self.action_space = gym.spaces.Discrete(9)
+        #self.action_space = gym.spaces.Discrete(7)
 
         self.info = {"collision": False}
 
+        self.last_position = None
+        self.last_time = None
+
+
         self.collision_time = 0
         self.random_start = True
+        self.current_vy = 0  # Initialize current vertical velocity
+        self.current_vz = 0 
+        self.current_speed = 0
         self.setup_flight()
 
     def step(self, action):
+        #self.do_action(action)
         self.do_action(action)
         obs, info = self.get_obs()
         reward, done = self.compute_reward()
@@ -66,55 +81,22 @@ class AirSimDroneEnv(gym.Env):
         # Prevent drone from falling after reset
         #self.drone.moveToZAsync(-1, 1)
 
-        self.drone.moveToPositionAsync(-20.55265, 0.9786, -10.0225, 5).join()
-        self.drone.simSetCameraPose("0", airsim.Pose(airsim.Vector3r(0, 0, 0), airsim.to_quaternion(math.radians( current_degree-5 ), 0, 0)))
+        #self.drone.moveToPositionAsync(-20.55265, 0.9786, -10.0225, 5).join()
+        #self.drone.simSetCameraPose("0", airsim.Pose(airsim.Vector3r(0, 0, 0), airsim.to_quaternion(math.radians( current_degree-5 ), 0, 0)))
         
 
-        self.drone.moveByRollPitchYawrateZAsync(0, 0, 2.85, self.drone.getMultirotorState().kinematics_estimated.position.z_val, 1).join()
-        self.drone.moveToPositionAsync(-20.55265, 0.9786, -10.0225, 5).join()
-
+        self.drone.moveByRollPitchYawrateZAsync(0, 0, 6.3, self.drone.getMultirotorState().kinematics_estimated.position.z_val, 1).join()
+        self.drone.moveToPositionAsync(-0.55265, 0.9786, -1.0225, 5).join()
+        time.sleep(1)
         # Get collision time stamp
         self.collision_time = self.drone.simGetCollisionInfo().time_stamp
 
-    def do_action_new_with_rotate(self, select_action):
-        speed = 1.5
-        yaw_rate = 45  # This is an example value, representing 45 degrees per second. Adjust as needed.
-        vy, vz, yaw = 0, 0, 0  # Initialize velocities and yaw rate
 
-        if select_action == 0:
-            vy, vz = (-speed, -speed)
-        elif select_action == 1:
-            vy, vz = (0, -speed)
-        elif select_action == 2:
-            vy, vz = (speed, -speed)
-        elif select_action == 3:
-            vy, vz = (-speed, 0)
-        elif select_action == 4:
-            vy, vz = (0, 0)
-        elif select_action == 5:
-            vy, vz = (speed, 0)
-        elif select_action == 6:
-            vy, vz = (-speed, speed)
-        elif select_action == 7:
-            vy, vz = (0, speed)
-        elif select_action == 8:
-            vy, vz = (speed, speed)
-        elif select_action == 9:
-            yaw = yaw_rate  # Rotate clockwise
-        elif select_action == 10:
-            yaw = -yaw_rate  # Rotate counter-clockwise
-
-        # Execute action
-        # Assuming the drone API has a method to control yaw. If not, you'll need to find the appropriate method.
-        self.drone.moveByVelocityBodyFrameAsync(speed, vy, vz, yaw_rate=yaw, duration=1).join()
-
-        # Prevent swaying and rotation
-        self.drone.moveByVelocityAsync(vx=0, vy=0, vz=0, duration=1)
-        # Assuming the drone API has a method to stop yaw rotation. If not, you'll need to find the appropriate method.
-        self.drone.stopYaw()
 
     def do_action(self, select_action):
-        speed = 1.5
+        """was speed = 1.0 and worked"""
+        #speed = 3.0
+        speed = 3.0
         if select_action == 0:
             vy, vz = (-speed, -speed)
         elif select_action == 1:
@@ -134,11 +116,8 @@ class AirSimDroneEnv(gym.Env):
         else:
             vy, vz = (speed, speed)
 
-        # Execute action
-        self.drone.moveByVelocityBodyFrameAsync(speed, vy, vz, duration=1).join()
-
-        # # Prevent swaying
-        self.drone.moveByVelocityAsync(vx=0, vy=0, vz=0, duration=1)
+        
+        self.drone.moveByVelocityBodyFrameAsync(speed, vy, vz, duration=0.1).join()
 
     def get_obs(self):
         self.info["collision"] = self.is_collision()
@@ -147,6 +126,34 @@ class AirSimDroneEnv(gym.Env):
 
 
     def compute_reward(self):
+        global previous_x
+
+        # Get current x position
+        pose = self.drone.simGetVehiclePose().position
+        x1 = pose.x_val
+
+        # Compute x difference traveled
+        if 'previous_x' not in globals():
+            previous_x = x1  # Initialize if not present
+        x_difference = previous_x - x1
+        previous_x = x1  # Update previous_x for the next step
+
+        # Use x_difference as the reward
+        reward = x_difference 
+        
+        #keeps wanting to just hover in place, counter this:
+        if reward < 0.1 and reward >= 0: reward = -0.1
+
+        done = False
+        if self.is_collision():
+            done = True
+            reward = -10  # Penalty for collision
+            previous_x = 0
+
+        return reward, done
+
+
+    def compute_reward_old(self):
         global first_pass
         global counter
         global frame_time
@@ -238,7 +245,7 @@ class AirSimDroneEnv(gym.Env):
         x1 = pose.x_val
         y1 = pose.y_val
         z1 = pose.z_val
-        #print(pose)
+        print(pose)
 
         # bus point
         x2, y2, z2 = -110, 0, 0
@@ -346,65 +353,28 @@ class AirSimDroneEnv(gym.Env):
         #print("Final reward: ", reward)
         return reward, done
 
-    def compute_reward_his(self):
-        reward = 0
-        done = 0
-
-        # Target distance based reward
-        x,y,z = self.drone.simGetVehiclePose().position
-        target_dist_curr = np.linalg.norm(np.array([y,-z]) - self.target_pos)
-        reward += (self.target_dist_prev - target_dist_curr)*20
-
-        self.target_dist_prev = target_dist_curr
-
-        # Get meters agent traveled
-        agent_traveled_x = np.abs(self.agent_start_pos - x)
-
-        # Alignment reward
-        if target_dist_curr < 0.30:
-            reward += 12
-            # Alignment becomes more important when agent is close to the hole 
-            if agent_traveled_x > 2.9:
-                reward += 7
-
-        elif target_dist_curr < 0.45:
-            reward += 7
-
-        # Collision penalty
-        if self.is_collision():
-            reward = -100
-            done = 1
-
-        # Check if agent passed through the hole
-        elif agent_traveled_x > 3.7:
-            reward += 10
-            done = 1
-
-        # Check if the hole disappeared from camera frame
-        # (target_dist_curr-0.3) : distance between agent and hole's end point
-        # (3.7-agent_traveled_x) : distance between agent and wall
-        # (3.7-agent_traveled_x)*sin(60) : end points that camera can capture
-        # FOV : 120 deg, sin(60) ~ 1.732 
-        elif (target_dist_curr-0.3) > (3.7-agent_traveled_x)*1.732:
-            reward = -100
-            done = 1
-
-        return reward, done
 
     def is_collision(self):
         current_collision_time = self.drone.simGetCollisionInfo().time_stamp
         return True if current_collision_time != self.collision_time else False
     
     def get_rgb_image(self):
+        #global pic_counter 
         rgb_image_request = airsim.ImageRequest(1, airsim.ImageType.Scene, False, False)
         responses = self.drone.simGetImages([rgb_image_request])
         img1d = np.fromstring(responses[0].image_data_uint8, dtype=np.uint8)
         img2d = np.reshape(img1d, (responses[0].height, responses[0].width, 3)) 
 
+        #pic_counter += 1
+        # Save the image using OpenCV
+        #save_path = "D:\\Home\\Images\\"+str(pic_counter)+".png"
+        #cv2.imwrite(save_path, img2d)
+
         # Sometimes no image returns from api
         try:
             return img2d.reshape(self.image_shape)
         except:
+            print("No picuture")
             return np.zeros((self.image_shape))
 
     def get_depth_image(self, thresh = 2.0):

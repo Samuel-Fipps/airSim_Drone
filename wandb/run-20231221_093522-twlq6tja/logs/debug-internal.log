@@ -1,0 +1,105 @@
+2023-12-21 09:35:22,527 INFO    StreamThr :15836 [internal.py:wandb_internal():86] W&B internal server running at pid: 15836, started at: 2023-12-21 09:35:22.527547
+2023-12-21 09:35:22,528 DEBUG   HandlerThread:15836 [handler.py:handle_request():146] handle_request: status
+2023-12-21 09:35:22,530 INFO    WriterThread:15836 [datastore.py:open_for_write():85] open: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\run-twlq6tja.wandb
+2023-12-21 09:35:22,531 DEBUG   SenderThread:15836 [sender.py:send():382] send: header
+2023-12-21 09:35:22,691 DEBUG   SenderThread:15836 [sender.py:send():382] send: run
+2023-12-21 09:35:22,941 INFO    SenderThread:15836 [dir_watcher.py:__init__():211] watching files in: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files
+2023-12-21 09:35:22,941 INFO    SenderThread:15836 [sender.py:_start_run_threads():1136] run started: twlq6tja with start time 1703172922.527547
+2023-12-21 09:35:22,950 DEBUG   HandlerThread:15836 [handler.py:handle_request():146] handle_request: check_version
+2023-12-21 09:35:22,950 DEBUG   SenderThread:15836 [sender.py:send_request():409] send_request: check_version
+2023-12-21 09:35:23,164 DEBUG   HandlerThread:15836 [handler.py:handle_request():146] handle_request: run_start
+2023-12-21 09:35:23,228 DEBUG   HandlerThread:15836 [system_info.py:__init__():32] System info init
+2023-12-21 09:35:23,228 DEBUG   HandlerThread:15836 [system_info.py:__init__():47] System info init done
+2023-12-21 09:35:23,228 INFO    HandlerThread:15836 [system_monitor.py:start():194] Starting system monitor
+2023-12-21 09:35:23,228 INFO    SystemMonitor:15836 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2023-12-21 09:35:23,228 INFO    HandlerThread:15836 [system_monitor.py:probe():214] Collecting system info
+2023-12-21 09:35:23,233 INFO    SystemMonitor:15836 [interfaces.py:start():190] Started cpu monitoring
+2023-12-21 09:35:23,233 INFO    SystemMonitor:15836 [interfaces.py:start():190] Started disk monitoring
+2023-12-21 09:35:23,234 INFO    SystemMonitor:15836 [interfaces.py:start():190] Started gpu monitoring
+2023-12-21 09:35:23,239 INFO    SystemMonitor:15836 [interfaces.py:start():190] Started memory monitoring
+2023-12-21 09:35:23,246 INFO    SystemMonitor:15836 [interfaces.py:start():190] Started network monitoring
+2023-12-21 09:35:23,249 DEBUG   HandlerThread:15836 [system_info.py:probe():196] Probing system
+2023-12-21 09:35:23,249 DEBUG   HandlerThread:15836 [system_info.py:_probe_git():181] Probing git
+2023-12-21 09:35:23,307 ERROR   HandlerThread:15836 [gitlib.py:root():92] git root error: Cmd('git') failed due to: exit code(128)
+  cmdline: git rev-parse --show-toplevel
+  stderr: 'fatal: detected dubious ownership in repository at 'D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters'
+'D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters' is on a file system that does not record ownership
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters'
+2023-12-21 09:35:23,307 DEBUG   HandlerThread:15836 [system_info.py:_probe_git():189] Probing git done
+2023-12-21 09:35:23,307 DEBUG   HandlerThread:15836 [system_info.py:probe():244] Probing system done
+2023-12-21 09:35:23,307 DEBUG   HandlerThread:15836 [system_monitor.py:probe():223] {'os': 'Windows-10-10.0.22621-SP0', 'python': '3.8.0', 'heartbeatAt': '2023-12-21T15:35:23.249981', 'startedAt': '2023-12-21T15:35:22.423368', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'loading_main.py', 'codePathLocal': 'loading_main.py', 'codePath': 'loading_main.py', 'git': {'remote': 'https://github.com/Samuel-Fipps/airSim_Drone.git', 'commit': None}, 'email': None, 'root': 'D:\\Everything\\PPO-based-Autonomous-Navigation-for-Quadcopters', 'host': 'DESKTOP-81K5R6V', 'username': 'cymstar_user', 'executable': 'C:\\Users\\cymstar_user\\AppData\\Local\\Programs\\Python\\Python38\\python.exe', 'cpu_count': 24, 'cpu_count_logical': 32, 'cpu_freq': {'current': 2000.0, 'min': 0.0, 'max': 2000.0}, 'cpu_freq_per_core': [{'current': 2000.0, 'min': 0.0, 'max': 2000.0}], 'disk': {'/': {'total': 953.8515625, 'used': 90.381591796875}}, 'gpu': 'NVIDIA GeForce RTX 4090', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}], 'memory': {'total': 31.72442626953125}}
+2023-12-21 09:35:23,307 INFO    HandlerThread:15836 [system_monitor.py:probe():224] Finished collecting system info
+2023-12-21 09:35:23,308 INFO    HandlerThread:15836 [system_monitor.py:probe():227] Publishing system info
+2023-12-21 09:35:23,308 DEBUG   HandlerThread:15836 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2023-12-21 09:35:23,309 DEBUG   HandlerThread:15836 [system_info.py:_save_pip():68] Saving pip packages done
+2023-12-21 09:35:23,309 DEBUG   HandlerThread:15836 [system_info.py:_save_code():90] Saving code
+2023-12-21 09:35:23,331 ERROR   HandlerThread:15836 [gitlib.py:root():92] git root error: Cmd('git') failed due to: exit code(128)
+  cmdline: git rev-parse --show-toplevel
+  stderr: 'fatal: detected dubious ownership in repository at 'D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters'
+'D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters' is on a file system that does not record ownership
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters'
+2023-12-21 09:35:23,349 DEBUG   HandlerThread:15836 [system_info.py:_save_code():111] Saving code done
+2023-12-21 09:35:23,349 DEBUG   HandlerThread:15836 [system_info.py:_save_patches():128] Saving git patches
+2023-12-21 09:35:23,376 ERROR   HandlerThread:15836 [gitlib.py:root():92] git root error: Cmd('git') failed due to: exit code(128)
+  cmdline: git rev-parse --show-toplevel
+  stderr: 'fatal: detected dubious ownership in repository at 'D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters'
+'D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters' is on a file system that does not record ownership
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters'
+2023-12-21 09:35:23,952 INFO    WriterThread:15836 [datastore.py:close():294] close: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\run-twlq6tja.wandb
+2023-12-21 09:35:23,953 INFO    Thread-16 :15836 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files\code\loading_main.py
+2023-12-21 09:35:23,953 INFO    Thread-16 :15836 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files\requirements.txt
+2023-12-21 09:35:23,953 INFO    Thread-16 :15836 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files\code
+2023-12-21 09:35:24,174 INFO    SenderThread:15836 [sender.py:finish():1548] shutting down sender
+2023-12-21 09:35:24,174 INFO    SenderThread:15836 [dir_watcher.py:finish():358] shutting down directory watcher
+2023-12-21 09:35:24,955 INFO    SenderThread:15836 [dir_watcher.py:finish():388] scan: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files
+2023-12-21 09:35:24,955 INFO    SenderThread:15836 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files\config.yaml config.yaml
+2023-12-21 09:35:24,956 INFO    SenderThread:15836 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files\requirements.txt requirements.txt
+2023-12-21 09:35:24,958 INFO    SenderThread:15836 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files\code\loading_main.py code/loading_main.py
+2023-12-21 09:35:24,958 INFO    SenderThread:15836 [file_pusher.py:finish():175] shutting down file pusher
+2023-12-21 09:35:24,959 INFO    SenderThread:15836 [file_pusher.py:join():181] waiting for file pusher
+2023-12-21 09:35:25,293 INFO    wandb-upload_0:15836 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files\config.yaml
+2023-12-21 09:35:25,355 INFO    wandb-upload_2:15836 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files\code\loading_main.py
+2023-12-21 09:35:25,357 INFO    wandb-upload_1:15836 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_093522-twlq6tja\files\requirements.txt
+2023-12-21 09:35:25,975 INFO    SenderThread:15836 [file_stream.py:finish():595] file stream finish called
+2023-12-21 09:35:26,093 INFO    SenderThread:15836 [file_stream.py:finish():599] file stream finish is done
+2023-12-21 09:35:26,188 ERROR   StreamThr :15836 [internal.py:wandb_internal():174] Thread HandlerThread:
+Traceback (most recent call last):
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\wandb\sdk\internal\internal_util.py", line 49, in run
+    self._run()
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\wandb\sdk\internal\internal_util.py", line 100, in _run
+    self._process(record)
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\wandb\sdk\internal\internal.py", line 279, in _process
+    self._hm.handle(record)
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\wandb\sdk\internal\handler.py", line 138, in handle
+    handler(record)
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\wandb\sdk\internal\handler.py", line 148, in handle_request
+    handler(record)
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\wandb\sdk\internal\handler.py", line 683, in handle_request_run_start
+    self._system_monitor.probe(publish=True)
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\wandb\sdk\internal\system\system_monitor.py", line 228, in probe
+    self.system_info.publish(system_info)
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\wandb\sdk\internal\system\system_info.py", line 255, in publish
+    self._save_patches()
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\wandb\sdk\internal\system\system_info.py", line 146, in _save_patches
+    upstream_commit = self.git.get_upstream_fork_point()
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\wandb\sdk\lib\gitlib.py", line 200, in get_upstream_fork_point
+    possible_relatives.append(tracking_branch.commit)
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\git\refs\symbolic.py", line 274, in _get_commit
+    obj = self._get_object()
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\git\refs\symbolic.py", line 267, in _get_object
+    return Object.new_from_sha(self.repo, hex_to_bin(self.dereference_recursive(self.repo, self.path)))
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\git\objects\base.py", line 94, in new_from_sha
+    oinfo = repo.odb.info(sha1)
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\git\db.py", line 40, in info
+    hexsha, typename, size = self._git.get_object_header(bin_to_hex(binsha))
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\git\cmd.py", line 1384, in get_object_header
+    return self.__get_object_header(cmd, ref)
+  File "C:\Users\cymstar_user\AppData\Local\Programs\Python\Python38\lib\site-packages\git\cmd.py", line 1370, in __get_object_header
+    cmd.stdin.flush()
+OSError: [Errno 22] Invalid argument

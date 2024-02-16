@@ -1,0 +1,53 @@
+{
+    "os": "Windows-10-10.0.22621-SP0",
+    "python": "3.8.0",
+    "heartbeatAt": "2023-12-21T15:55:01.625333",
+    "startedAt": "2023-12-21T15:55:00.961115",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "loading_main.py",
+    "codePathLocal": "loading_main.py",
+    "codePath": "loading_main.py",
+    "git": {
+        "remote": "https://github.com/Samuel-Fipps/airSim_Drone.git",
+        "commit": "f8625165bd333a5cd601acf6b28588e3d8c3302c"
+    },
+    "email": null,
+    "root": "D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters",
+    "host": "DESKTOP-81K5R6V",
+    "username": "cymstar_user",
+    "executable": "C:\\Users\\cymstar_user\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "cpu_count": 24,
+    "cpu_count_logical": 32,
+    "cpu_freq": {
+        "current": 2000.0,
+        "min": 0.0,
+        "max": 2000.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2000.0,
+            "min": 0.0,
+            "max": 2000.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 953.8515625,
+            "used": 86.55810546875
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        }
+    ],
+    "memory": {
+        "total": 31.72442626953125
+    }
+}

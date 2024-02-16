@@ -1,0 +1,24 @@
+    def do_action(self, select_action):
+        """was speed = 1.0 and worked"""
+        speed = 1.0
+        if select_action == 0:
+            vy, vz = (-speed, -speed)
+        elif select_action == 1:
+            vy, vz = (0, -speed)
+        elif select_action == 2:
+            vy, vz = (speed, -speed)
+        elif select_action == 3:
+            vy, vz = (-speed, 0)
+        elif select_action == 4:
+            vy, vz = (0, 0)
+        elif select_action == 5:
+            vy, vz = (speed, 0)
+        elif select_action == 6:
+            vy, vz = (-speed, speed)
+        elif select_action == 7:
+            vy, vz = (0, speed)
+        else:
+            vy, vz = (speed, speed)
+
+
+        self.drone.moveByVelocityBodyFrameAsync(speed, vy, vz, duration=0.1).join()

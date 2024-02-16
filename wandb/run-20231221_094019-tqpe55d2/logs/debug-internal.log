@@ -1,0 +1,203 @@
+2023-12-21 09:40:20,061 INFO    StreamThr :9068 [internal.py:wandb_internal():86] W&B internal server running at pid: 9068, started at: 2023-12-21 09:40:20.060306
+2023-12-21 09:40:20,061 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: status
+2023-12-21 09:40:20,064 INFO    WriterThread:9068 [datastore.py:open_for_write():85] open: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\run-tqpe55d2.wandb
+2023-12-21 09:40:20,064 DEBUG   SenderThread:9068 [sender.py:send():382] send: header
+2023-12-21 09:40:20,086 DEBUG   SenderThread:9068 [sender.py:send():382] send: run
+2023-12-21 09:40:20,342 INFO    SenderThread:9068 [dir_watcher.py:__init__():211] watching files in: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files
+2023-12-21 09:40:20,343 INFO    SenderThread:9068 [sender.py:_start_run_threads():1136] run started: tqpe55d2 with start time 1703173220.061306
+2023-12-21 09:40:20,349 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: check_version
+2023-12-21 09:40:20,349 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: check_version
+2023-12-21 09:40:20,528 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: run_start
+2023-12-21 09:40:20,572 DEBUG   HandlerThread:9068 [system_info.py:__init__():32] System info init
+2023-12-21 09:40:20,572 DEBUG   HandlerThread:9068 [system_info.py:__init__():47] System info init done
+2023-12-21 09:40:20,573 INFO    HandlerThread:9068 [system_monitor.py:start():194] Starting system monitor
+2023-12-21 09:40:20,573 INFO    SystemMonitor:9068 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2023-12-21 09:40:20,573 INFO    HandlerThread:9068 [system_monitor.py:probe():214] Collecting system info
+2023-12-21 09:40:20,576 INFO    SystemMonitor:9068 [interfaces.py:start():190] Started cpu monitoring
+2023-12-21 09:40:20,577 INFO    SystemMonitor:9068 [interfaces.py:start():190] Started disk monitoring
+2023-12-21 09:40:20,577 INFO    SystemMonitor:9068 [interfaces.py:start():190] Started gpu monitoring
+2023-12-21 09:40:20,582 INFO    SystemMonitor:9068 [interfaces.py:start():190] Started memory monitoring
+2023-12-21 09:40:20,595 INFO    SystemMonitor:9068 [interfaces.py:start():190] Started network monitoring
+2023-12-21 09:40:20,600 DEBUG   HandlerThread:9068 [system_info.py:probe():196] Probing system
+2023-12-21 09:40:20,600 DEBUG   HandlerThread:9068 [system_info.py:_probe_git():181] Probing git
+2023-12-21 09:40:20,647 DEBUG   HandlerThread:9068 [system_info.py:_probe_git():189] Probing git done
+2023-12-21 09:40:20,647 DEBUG   HandlerThread:9068 [system_info.py:probe():244] Probing system done
+2023-12-21 09:40:20,647 DEBUG   HandlerThread:9068 [system_monitor.py:probe():223] {'os': 'Windows-10-10.0.22621-SP0', 'python': '3.8.0', 'heartbeatAt': '2023-12-21T15:40:20.600038', 'startedAt': '2023-12-21T15:40:19.975772', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'loading_main.py', 'codePathLocal': 'loading_main.py', 'codePath': 'loading_main.py', 'git': {'remote': 'https://github.com/Samuel-Fipps/airSim_Drone.git', 'commit': 'f8625165bd333a5cd601acf6b28588e3d8c3302c'}, 'email': None, 'root': 'D:/Everything/PPO-based-Autonomous-Navigation-for-Quadcopters', 'host': 'DESKTOP-81K5R6V', 'username': 'cymstar_user', 'executable': 'C:\\Users\\cymstar_user\\AppData\\Local\\Programs\\Python\\Python38\\python.exe', 'cpu_count': 24, 'cpu_count_logical': 32, 'cpu_freq': {'current': 2000.0, 'min': 0.0, 'max': 2000.0}, 'cpu_freq_per_core': [{'current': 2000.0, 'min': 0.0, 'max': 2000.0}], 'disk': {'/': {'total': 953.8515625, 'used': 90.388916015625}}, 'gpu': 'NVIDIA GeForce RTX 4090', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}], 'memory': {'total': 31.72442626953125}}
+2023-12-21 09:40:20,647 INFO    HandlerThread:9068 [system_monitor.py:probe():224] Finished collecting system info
+2023-12-21 09:40:20,647 INFO    HandlerThread:9068 [system_monitor.py:probe():227] Publishing system info
+2023-12-21 09:40:20,647 DEBUG   HandlerThread:9068 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2023-12-21 09:40:20,648 DEBUG   HandlerThread:9068 [system_info.py:_save_pip():68] Saving pip packages done
+2023-12-21 09:40:20,648 DEBUG   HandlerThread:9068 [system_info.py:_save_code():90] Saving code
+2023-12-21 09:40:20,686 DEBUG   HandlerThread:9068 [system_info.py:_save_code():111] Saving code done
+2023-12-21 09:40:20,686 DEBUG   HandlerThread:9068 [system_info.py:_save_patches():128] Saving git patches
+2023-12-21 09:40:20,836 DEBUG   HandlerThread:9068 [system_info.py:_save_patches():170] Saving git patches done
+2023-12-21 09:40:20,838 INFO    HandlerThread:9068 [system_monitor.py:probe():229] Finished publishing system info
+2023-12-21 09:40:20,844 DEBUG   SenderThread:9068 [sender.py:send():382] send: files
+2023-12-21 09:40:20,844 INFO    SenderThread:9068 [sender.py:_save_file():1392] saving file wandb-metadata.json with policy now
+2023-12-21 09:40:20,845 INFO    SenderThread:9068 [sender.py:_save_file():1392] saving file code\loading_main.py with policy now
+2023-12-21 09:40:20,845 INFO    SenderThread:9068 [sender.py:_save_file():1392] saving file diff.patch with policy now
+2023-12-21 09:40:20,848 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: stop_status
+2023-12-21 09:40:20,848 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: stop_status
+2023-12-21 09:40:20,849 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: internal_messages
+2023-12-21 09:40:20,973 DEBUG   SenderThread:9068 [sender.py:send():382] send: telemetry
+2023-12-21 09:40:21,183 INFO    wandb-upload_0:9068 [upload_job.py:push():131] Uploaded file C:\Users\CYMSTA~1\AppData\Local\Temp\tmpbbs7v6t0wandb\cs8vhns8-wandb-metadata.json
+2023-12-21 09:40:21,184 INFO    wandb-upload_1:9068 [upload_job.py:push():131] Uploaded file C:\Users\CYMSTA~1\AppData\Local\Temp\tmpbbs7v6t0wandb\w9vfz89m-code/loading_main.py
+2023-12-21 09:40:21,223 INFO    wandb-upload_2:9068 [upload_job.py:push():131] Uploaded file C:\Users\CYMSTA~1\AppData\Local\Temp\tmpbbs7v6t0wandb\seox3hsa-diff.patch
+2023-12-21 09:40:21,349 INFO    Thread-16 :9068 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\requirements.txt
+2023-12-21 09:40:21,349 INFO    Thread-16 :9068 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\wandb-metadata.json
+2023-12-21 09:40:21,349 INFO    Thread-16 :9068 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\code\loading_main.py
+2023-12-21 09:40:21,349 INFO    Thread-16 :9068 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\diff.patch
+2023-12-21 09:40:21,349 INFO    Thread-16 :9068 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\code
+2023-12-21 09:40:26,031 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: status_report
+2023-12-21 09:40:31,057 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: status_report
+2023-12-21 09:40:35,858 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: internal_messages
+2023-12-21 09:40:35,859 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: stop_status
+2023-12-21 09:40:35,859 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: stop_status
+2023-12-21 09:40:36,913 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: status_report
+2023-12-21 09:40:39,724 DEBUG   SenderThread:9068 [sender.py:send():382] send: exit
+2023-12-21 09:40:39,725 INFO    SenderThread:9068 [sender.py:send_exit():589] handling exit code: 255
+2023-12-21 09:40:39,725 INFO    SenderThread:9068 [sender.py:send_exit():591] handling runtime: 19
+2023-12-21 09:40:39,726 INFO    SenderThread:9068 [sender.py:_save_file():1392] saving file wandb-summary.json with policy end
+2023-12-21 09:40:39,726 INFO    SenderThread:9068 [sender.py:send_exit():597] send defer
+2023-12-21 09:40:39,726 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:39,726 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 0
+2023-12-21 09:40:39,726 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:39,726 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 0
+2023-12-21 09:40:39,726 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 1
+2023-12-21 09:40:39,726 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:39,726 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 1
+2023-12-21 09:40:39,727 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:39,727 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 1
+2023-12-21 09:40:39,727 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 2
+2023-12-21 09:40:39,727 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:39,727 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 2
+2023-12-21 09:40:39,727 INFO    HandlerThread:9068 [system_monitor.py:finish():203] Stopping system monitor
+2023-12-21 09:40:39,727 DEBUG   SystemMonitor:9068 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2023-12-21 09:40:39,727 INFO    HandlerThread:9068 [interfaces.py:finish():202] Joined cpu monitor
+2023-12-21 09:40:39,732 DEBUG   SystemMonitor:9068 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2023-12-21 09:40:39,732 INFO    HandlerThread:9068 [interfaces.py:finish():202] Joined disk monitor
+2023-12-21 09:40:39,732 DEBUG   SystemMonitor:9068 [system_monitor.py:_start():183] Publishing last batch of metrics
+2023-12-21 09:40:39,767 INFO    HandlerThread:9068 [interfaces.py:finish():202] Joined gpu monitor
+2023-12-21 09:40:39,767 INFO    HandlerThread:9068 [interfaces.py:finish():202] Joined memory monitor
+2023-12-21 09:40:39,767 INFO    HandlerThread:9068 [interfaces.py:finish():202] Joined network monitor
+2023-12-21 09:40:39,768 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:39,768 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 2
+2023-12-21 09:40:39,768 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 3
+2023-12-21 09:40:39,768 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:39,768 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 3
+2023-12-21 09:40:39,768 DEBUG   SenderThread:9068 [sender.py:send():382] send: stats
+2023-12-21 09:40:39,769 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:39,769 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 3
+2023-12-21 09:40:39,769 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 4
+2023-12-21 09:40:39,769 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:39,769 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 4
+2023-12-21 09:40:39,769 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:39,769 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 4
+2023-12-21 09:40:39,769 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 5
+2023-12-21 09:40:39,769 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:39,769 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 5
+2023-12-21 09:40:39,770 DEBUG   SenderThread:9068 [sender.py:send():382] send: summary
+2023-12-21 09:40:39,771 INFO    SenderThread:9068 [sender.py:_save_file():1392] saving file wandb-summary.json with policy end
+2023-12-21 09:40:39,771 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:39,771 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 5
+2023-12-21 09:40:39,771 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 6
+2023-12-21 09:40:39,771 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:39,771 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 6
+2023-12-21 09:40:39,771 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:39,771 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 6
+2023-12-21 09:40:39,773 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: status_report
+2023-12-21 09:40:39,856 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 7
+2023-12-21 09:40:39,856 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:39,856 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 7
+2023-12-21 09:40:39,856 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:39,856 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 7
+2023-12-21 09:40:40,481 INFO    Thread-16 :9068 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\config.yaml
+2023-12-21 09:40:40,481 INFO    Thread-16 :9068 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\wandb-summary.json
+2023-12-21 09:40:40,481 INFO    Thread-16 :9068 [dir_watcher.py:_on_file_created():271] file/dir created: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\output.log
+2023-12-21 09:40:40,733 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: poll_exit
+2023-12-21 09:40:41,731 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 8
+2023-12-21 09:40:41,731 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: poll_exit
+2023-12-21 09:40:41,731 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:41,731 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 8
+2023-12-21 09:40:41,732 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:41,732 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 8
+2023-12-21 09:40:41,732 INFO    SenderThread:9068 [job_builder.py:build():298] Attempting to build job artifact
+2023-12-21 09:40:41,732 INFO    SenderThread:9068 [job_builder.py:_get_source_type():428] is repo sourced job
+2023-12-21 09:40:41,743 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: poll_exit
+2023-12-21 09:40:41,758 INFO    SenderThread:9068 [job_builder.py:build():404] adding wandb-job metadata file
+2023-12-21 09:40:41,763 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 9
+2023-12-21 09:40:41,763 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: poll_exit
+2023-12-21 09:40:41,763 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:41,763 DEBUG   SenderThread:9068 [sender.py:send():382] send: artifact
+2023-12-21 09:40:41,763 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 9
+2023-12-21 09:40:42,261 INFO    wandb-upload_1:9068 [upload_job.py:push():86] Skipped uploading C:\Users\cymstar_user\AppData\Local\wandb\wandb\artifacts\staging\tmp8m7k7wb9
+2023-12-21 09:40:42,261 INFO    wandb-upload_2:9068 [upload_job.py:push():86] Skipped uploading C:\Users\cymstar_user\AppData\Local\wandb\wandb\artifacts\staging\tmpmkqv0v25
+2023-12-21 09:40:42,491 INFO    wandb-upload_0:9068 [upload_job.py:push():89] Uploaded file C:\Users\cymstar_user\AppData\Local\wandb\wandb\artifacts\staging\tmpwsvkvlr4
+2023-12-21 09:40:42,497 INFO    Thread-16 :9068 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\output.log
+2023-12-21 09:40:42,750 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: poll_exit
+2023-12-21 09:40:44,140 INFO    SenderThread:9068 [sender.py:send_artifact():1470] sent artifact job-https___github.com_Samuel-Fipps_airSim_Drone.git_loading_main.py - {'id': 'QXJ0aWZhY3Q6NjcxOTg0MDMz', 'state': 'PENDING', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjEyNTA5MjkzMg==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NjcxOTgzMjMy', 'versionIndex': 0}}}
+2023-12-21 09:40:44,140 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:44,140 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 9
+2023-12-21 09:40:44,140 INFO    SenderThread:9068 [dir_watcher.py:finish():358] shutting down directory watcher
+2023-12-21 09:40:44,511 INFO    SenderThread:9068 [dir_watcher.py:finish():388] scan: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files
+2023-12-21 09:40:44,512 INFO    SenderThread:9068 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\config.yaml config.yaml
+2023-12-21 09:40:44,512 INFO    SenderThread:9068 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\requirements.txt requirements.txt
+2023-12-21 09:40:44,513 INFO    SenderThread:9068 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\diff.patch diff.patch
+2023-12-21 09:40:44,513 INFO    SenderThread:9068 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\wandb-metadata.json wandb-metadata.json
+2023-12-21 09:40:44,513 INFO    SenderThread:9068 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\output.log output.log
+2023-12-21 09:40:44,514 INFO    SenderThread:9068 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\wandb-summary.json wandb-summary.json
+2023-12-21 09:40:44,517 INFO    SenderThread:9068 [dir_watcher.py:finish():402] scan save: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\code\loading_main.py code/loading_main.py
+2023-12-21 09:40:44,517 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 10
+2023-12-21 09:40:44,517 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: poll_exit
+2023-12-21 09:40:44,517 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:44,517 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 10
+2023-12-21 09:40:44,518 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:44,518 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 10
+2023-12-21 09:40:44,518 INFO    SenderThread:9068 [file_pusher.py:finish():175] shutting down file pusher
+2023-12-21 09:40:44,736 INFO    wandb-upload_3:9068 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\wandb-summary.json
+2023-12-21 09:40:44,737 INFO    wandb-upload_1:9068 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\config.yaml
+2023-12-21 09:40:44,738 INFO    wandb-upload_2:9068 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\output.log
+2023-12-21 09:40:44,783 INFO    wandb-upload_0:9068 [upload_job.py:push():131] Uploaded file D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\files\requirements.txt
+2023-12-21 09:40:44,998 INFO    Thread-15 :9068 [sender.py:transition_state():617] send defer: 11
+2023-12-21 09:40:44,998 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:44,998 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 11
+2023-12-21 09:40:44,998 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:44,998 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 11
+2023-12-21 09:40:44,998 INFO    SenderThread:9068 [file_pusher.py:join():181] waiting for file pusher
+2023-12-21 09:40:44,998 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 12
+2023-12-21 09:40:44,998 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:44,998 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 12
+2023-12-21 09:40:44,998 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:44,999 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 12
+2023-12-21 09:40:44,999 INFO    SenderThread:9068 [file_stream.py:finish():595] file stream finish called
+2023-12-21 09:40:45,076 INFO    SenderThread:9068 [file_stream.py:finish():599] file stream finish is done
+2023-12-21 09:40:45,076 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 13
+2023-12-21 09:40:45,076 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:45,076 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 13
+2023-12-21 09:40:45,076 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:45,076 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 13
+2023-12-21 09:40:45,076 INFO    SenderThread:9068 [sender.py:transition_state():617] send defer: 14
+2023-12-21 09:40:45,076 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: defer
+2023-12-21 09:40:45,076 DEBUG   SenderThread:9068 [sender.py:send():382] send: final
+2023-12-21 09:40:45,076 INFO    HandlerThread:9068 [handler.py:handle_request_defer():172] handle defer: 14
+2023-12-21 09:40:45,076 DEBUG   SenderThread:9068 [sender.py:send():382] send: footer
+2023-12-21 09:40:45,077 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: defer
+2023-12-21 09:40:45,077 INFO    SenderThread:9068 [sender.py:send_request_defer():613] handle sender defer: 14
+2023-12-21 09:40:45,077 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: poll_exit
+2023-12-21 09:40:45,077 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: server_info
+2023-12-21 09:40:45,077 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: get_summary
+2023-12-21 09:40:45,077 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: sampled_history
+2023-12-21 09:40:45,077 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: internal_messages
+2023-12-21 09:40:45,077 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: poll_exit
+2023-12-21 09:40:45,078 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: server_info
+2023-12-21 09:40:45,078 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: job_info
+2023-12-21 09:40:45,124 DEBUG   SenderThread:9068 [sender.py:send_request():409] send_request: job_info
+2023-12-21 09:40:45,125 INFO    MainThread:9068 [wandb_run.py:_footer_history_summary_info():3837] rendering history
+2023-12-21 09:40:45,125 INFO    MainThread:9068 [wandb_run.py:_footer_history_summary_info():3869] rendering summary
+2023-12-21 09:40:45,125 INFO    MainThread:9068 [wandb_run.py:_footer_sync_info():3796] logging synced files
+2023-12-21 09:40:45,125 DEBUG   HandlerThread:9068 [handler.py:handle_request():146] handle_request: shutdown
+2023-12-21 09:40:45,125 INFO    HandlerThread:9068 [handler.py:finish():866] shutting down handler
+2023-12-21 09:40:46,081 INFO    WriterThread:9068 [datastore.py:close():294] close: D:\Everything\PPO-based-Autonomous-Navigation-for-Quadcopters\wandb\run-20231221_094019-tqpe55d2\run-tqpe55d2.wandb
+2023-12-21 09:40:46,128 INFO    SenderThread:9068 [sender.py:finish():1548] shutting down sender
+2023-12-21 09:40:46,128 INFO    SenderThread:9068 [file_pusher.py:finish():175] shutting down file pusher
+2023-12-21 09:40:46,128 INFO    SenderThread:9068 [file_pusher.py:join():181] waiting for file pusher
