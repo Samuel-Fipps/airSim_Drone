@@ -1,0 +1,30 @@
+
+Teaching a reinforcement learning (RL) model to follow a bus using a drone in Unreal Engine can be a complex task. Breaking the process down into simpler sub-tasks can be a good approach to make the training more tractable. Here's a potential step-by-step approach:
+
+1. Basic Drone Control:
+Start by teaching the drone to take off, hover at a specific altitude, and land. This will ensure the RL agent understands the basic controls of the drone.
+Introduce movement controls one axis at a time. For instance, first allow the drone to move forward and backward. Then, introduce left and right, followed by up and down.
+As the RL agent learns these basic controls, you can gradually introduce combinations of movements. This will help the agent understand the drone's dynamics in a controlled manner.
+
+2. Obstacle Avoidance:
+Once the RL model can reliably control the drone, introduce static obstacles. This will teach the drone to avoid collisions.
+Gradually increase the complexity of the environment by adding moving obstacles or changing lighting conditions. This will prepare the drone for a dynamic environment where a bus and other entities are moving.
+Bus Tracking:
+
+3. Start by having a stationary bus. The task for the drone would be to position itself at a certain distance and angle from the bus. This will help the agent learn how to approach and maintain a certain distance from the target.
+Introduce a moving bus, but at a constant speed and in a straight line. The drone's task would be to follow the bus.
+Introduce more complex bus movements such as turns, stops, and variable speeds. This will teach the drone to adapt to the bus's unpredictable movements.
+
+4. Combining Skills:
+Once the drone can reliably follow the bus and avoid obstacles independently, combine the two tasks. The drone should be able to follow the bus in a dynamic environment with other vehicles, pedestrians, and various obstacles.
+
+5. Generalization:
+To make your RL agent robust, it's essential to expose it to a variety of scenarios. Different buses, environments, weather conditions in Unreal Engine, etc., will help in achieving this.
+
+6. Optimization:
+Once your model is proficient in following a bus, you can optimize its behavior. This can include minimizing the drone's movement to conserve battery, ensuring the drone's camera always has the bus in view for potential surveillance applications, etc.
+
+7. A few other points to consider:
+Sim-to-real Transfer: If you plan to transfer the learned policy to a real drone, you will need to consider the differences between the simulation and real world. Domain adaptation or domain randomization are common techniques to bridge this gap.
+Reward Shaping: Designing a suitable reward function for RL can be challenging. Ensure your reward function effectively guides the agent towards desired behaviors without introducing unintended behaviors.
+Utilizing a framework that integrates with Unreal Engine, like Microsoft's AirSim, can be helpful in setting up these RL tasks.
