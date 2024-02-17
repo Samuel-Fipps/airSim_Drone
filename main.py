@@ -3,7 +3,6 @@ import yaml
 import gym
 import time
 import torch
-import wandb
 
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import DummyVecEnv, VecTransposeImage
@@ -47,13 +46,6 @@ class CustomEvalCallback(EvalCallback):
                 mean_length = np.mean(latest_lengths)
                 std_length = np.std(latest_lengths)
 
-                # Log to wandb
-                wandb.log({
-                    "eval/mean_reward": mean_reward,
-                    "eval/std_reward": std_reward,
-                    "eval/mean_length": mean_length,
-                    "eval/std_length": std_length
-                })
             else:
                 print("Monitor wrapper not found in evaluation environment.")
         return True
@@ -67,13 +59,13 @@ class CustomCNNFeatureExtractor(BaseFeaturesExtractor):
 
         # Enhanced CNN layers with Group Normalization
         self.cnn = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=7, stride=1),
+            nn.Conv2d(3, 32, kernel_size=5, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
-            nn.Conv2d(64, 128, kernel_size=7, stride=1),
+            nn.Conv2d(32, 64, kernel_size=5, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
-            nn.Conv2d(128, 256, kernel_size=3, stride=1),
+            nn.Conv2d(64, 128, kernel_size=5, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
             nn.Flatten(),
@@ -112,22 +104,33 @@ class CustomCNNFeatureExtractor(BaseFeaturesExtractor):
         )
 
     def forward(self, observations):
+        #weights = torch.tensor([0.2989, 0.5870, 0.1140]).view(1, 3, 1, 1).to(observations.device)
+        #observations = torch.sum(observations * weights, dim=1, keepdim=True)
 
         debug = False
+        gray  = True
         if debug:
-            print("hello")
-            # Convert the tensor to an image format for visualization
-            # Assuming observations is a 4D Tensor of shape (batch_size, channels, height, width)
-            img = observations[0]  # Take the first image in the batch
-            img = img.cpu().numpy()  # Convert to numpy array
-            img = np.transpose(img, (1, 2, 0))  # Change the channel order for visualization
-
-            # Normalize the image for better visualization
-            img = (img - img.min()) / (img.max() - img.min())
+            if gray:
+                img = observations[0]  # Take the first image in the batch
+                img = img.cpu().numpy()
+                img = np.squeeze(img) 
+                img = (img - img.min()) / (img.max() - img.min())
+                plt.imshow(img, cmap='gray')  # Specifying cmap='gray' to ensure grayscale rendering
+                plt.show()
+            
+            else:
+                img = observations[0]  # Take the first image in the batch
+                img = img.cpu().numpy()  # Convert to numpy array
+                img = np.transpose(img, (1, 2, 0))  # Change the channel order for visualization
+                img = (img - img.min()) / (img.max() - img.min())
+                img = (img - img.min()) / (img.max() - img.min())
 
             # Plot the image
-            plt.imshow(img)
-            plt.show()
+                img = (img - img.min()) / (img.max() - img.min())
+
+            # Plot the image
+                plt.imshow(img)
+                plt.show()
 
 
         cnn_features = self.cnn(observations)
@@ -176,7 +179,7 @@ model = PPO(
     policy=CustomCnnPolicy,  # Using the custom policy
     env=env,
     learning_rate=0.0003,
-    n_steps=1024,  # to train
+    n_steps=9,  # to train
     batch_size=32,
     n_epochs=50,
     gamma=0.99,
@@ -185,12 +188,6 @@ model = PPO(
     tensorboard_log="./tb_logs/",
 )
 
-# Start logging
-wandb.init(project='Drone',
-            config={
-            "speed": 0.1,
-            }
-)
 
 #print(model.policy)
 #exit()
@@ -200,10 +197,10 @@ callbacks = []
 eval_callback = CustomEvalCallback(
     env,
     callback_on_new_best=None,
-    n_eval_episodes=100,
+    n_eval_episodes=1,
     best_model_save_path=".",
     log_path=".",
-    eval_freq=1025,
+    eval_freq=10,
 )
 callbacks.append(eval_callback)
 
@@ -220,8 +217,6 @@ model.learn(
 
 # Save policy weights
 model.save("ppo_airsim_drone_policy")
-
-wandb.finish()
 
 
 

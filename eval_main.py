@@ -113,7 +113,7 @@ class CustomCnnPolicy(ActorCriticPolicy):
 
 
 print("Samuel - Check if cuda is avaible to train on:", torch.cuda.is_available())
-torch.cuda.set_device(0)
+torch.cuda.set_device(1)
 
 with open('scripts/config.yml', 'r') as f:
     env_config = yaml.safe_load(f)
@@ -137,7 +137,7 @@ env = VecTransposeImage(env)
 
 # LOAD the model instead of initializing a new one
 #loaded_model = PPO.load("best_hoovering_model_v1_0_") 
-loaded_model = PPO.load("newbestmodel/best_model3") 
+loaded_model = PPO.load("best_model") 
 loaded_model.set_env(env)
 
 # Evaluate the policy
