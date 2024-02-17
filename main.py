@@ -68,13 +68,13 @@ class CustomCNNFeatureExtractor(BaseFeaturesExtractor):
 
         # Enhanced CNN layers with Group Normalization
         self.cnn = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=7, stride=1),
+            nn.Conv2d(3, 32, kernel_size=5, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
-            nn.Conv2d(64, 128, kernel_size=7, stride=1),
+            nn.Conv2d(32, 64, kernel_size=5, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
-            nn.Conv2d(128, 256, kernel_size=3, stride=1),
+            nn.Conv2d(64, 128, kernel_size=5, stride=1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
             nn.Flatten(),
@@ -113,22 +113,33 @@ class CustomCNNFeatureExtractor(BaseFeaturesExtractor):
         )
 
     def forward(self, observations):
+        #weights = torch.tensor([0.2989, 0.5870, 0.1140]).view(1, 3, 1, 1).to(observations.device)
+        #observations = torch.sum(observations * weights, dim=1, keepdim=True)
 
         debug = False
+        gray  = True
         if debug:
-            print("hello")
-            # Convert the tensor to an image format for visualization
-            # Assuming observations is a 4D Tensor of shape (batch_size, channels, height, width)
-            img = observations[0]  # Take the first image in the batch
-            img = img.cpu().numpy()  # Convert to numpy array
-            img = np.transpose(img, (1, 2, 0))  # Change the channel order for visualization
-
-            # Normalize the image for better visualization
-            img = (img - img.min()) / (img.max() - img.min())
+            if gray:
+                img = observations[0]  # Take the first image in the batch
+                img = img.cpu().numpy()
+                img = np.squeeze(img) 
+                img = (img - img.min()) / (img.max() - img.min())
+                plt.imshow(img, cmap='gray')  # Specifying cmap='gray' to ensure grayscale rendering
+                plt.show()
+            
+            else:
+                img = observations[0]  # Take the first image in the batch
+                img = img.cpu().numpy()  # Convert to numpy array
+                img = np.transpose(img, (1, 2, 0))  # Change the channel order for visualization
+                img = (img - img.min()) / (img.max() - img.min())
+                img = (img - img.min()) / (img.max() - img.min())
 
             # Plot the image
-            plt.imshow(img)
-            plt.show()
+                img = (img - img.min()) / (img.max() - img.min())
+
+            # Plot the image
+                plt.imshow(img)
+                plt.show()
 
 
         cnn_features = self.cnn(observations)
@@ -204,7 +215,7 @@ kwargs["callback"] = callbacks
 
 # Train for a certain number of timesteps
 model.learn(
-    total_timesteps=5e6,
+    total_timesteps=5e5,
     tb_log_name="ppo_airsim_drone_run_" + str(time.time()),
     **kwargs,
     #progress_bar=True

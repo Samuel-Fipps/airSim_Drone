@@ -87,8 +87,8 @@ class AirSimDroneEnv(gym.Env):
         #self.drone.simSetCameraPose("0", airsim.Pose(airsim.Vector3r(0, 0, 0), airsim.to_quaternion(math.radians( current_degree-5 ), 0, 0)))
         
 
-        self.drone.moveByRollPitchYawrateZAsync(0, 0, 6.3, self.drone.getMultirotorState().kinematics_estimated.position.z_val, 1).join()
-        self.drone.moveToPositionAsync(-0.55265, 0.9786, -1.0225, 5).join()
+        self.drone.moveByRollPitchYawrateZAsync(0, 0, 0, self.drone.getMultirotorState().kinematics_estimated.position.z_val, 1).join()
+        #self.drone.moveToPositionAsync(-0.55265, 0.9786, -1.0225, 5).join()
         time.sleep(1)
         # Get collision time stamp
         self.collision_time = self.drone.simGetCollisionInfo().time_stamp
