@@ -10,7 +10,7 @@ from stable_baselines3.common.callbacks import EvalCallback
 from stable_baselines3 import PPO
 
 print("Samuel - Check if cuda is avaible to train on:", torch.cuda.is_available())
-torch.cuda.set_device(0)
+torch.cuda.set_device(1)
 
 with open('scripts/config.yml', 'r') as f:
     env_config = yaml.safe_load(f)
@@ -21,7 +21,7 @@ env = DummyVecEnv (
             gym.make(
                 "scripts:airsim-env-v0", 
                 ip_address="127.0.0.1",
-                image_shape = (720, 1280, 3),
+                image_shape = (480, 640, 3),
                 env_config=env_config["TrainEnv"],
                 #step_length=0.25,
                 step_length=4,
@@ -44,7 +44,7 @@ model = PPO(
     #}, 
     env=env,
     learning_rate=0.0003,
-    n_steps=2048, # to train
+    n_steps=1024, # to train
     #n_steps=8, # to train
     batch_size=128,
     n_epochs=10,
@@ -59,10 +59,10 @@ callbacks = []
 eval_callback = EvalCallback(
     env,
     callback_on_new_best=None,
-    n_eval_episodes=25,
+    n_eval_episodes=10,
     best_model_save_path=".",
     log_path=".",
-    eval_freq=10000,
+    eval_freq=1025,
 )
 callbacks.append(eval_callback)
 

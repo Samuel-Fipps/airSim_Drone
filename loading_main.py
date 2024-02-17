@@ -91,10 +91,10 @@ callbacks = []
 eval_callback = CustomEvalCallback(
     env,
     callback_on_new_best=None,
-    n_eval_episodes=25,
+    n_eval_episodes=10,
     best_model_save_path="newbestmodel/",
     log_path=".",
-    eval_freq=10000,
+    eval_freq=1025,
 )
 callbacks.append(eval_callback)
 

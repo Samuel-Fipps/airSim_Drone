@@ -29,6 +29,8 @@ continues_to_be_bad = 1
 within_distance_counter = 0 
 pic_counter = 0
 debug_counter = 0
+end_of_maze_counter = 0
+win_counter = 0
 
 def interpolate_velocity(current_v, target_v, steps=10):
     return np.linspace(current_v, target_v, steps)
@@ -85,8 +87,8 @@ class AirSimDroneEnv(gym.Env):
         #self.drone.simSetCameraPose("0", airsim.Pose(airsim.Vector3r(0, 0, 0), airsim.to_quaternion(math.radians( current_degree-5 ), 0, 0)))
         
 
-        self.drone.moveByRollPitchYawrateZAsync(0, 0, 6.3, self.drone.getMultirotorState().kinematics_estimated.position.z_val, 1).join()
-        self.drone.moveToPositionAsync(-0.55265, 0.9786, -1.0225, 5).join()
+        self.drone.moveByRollPitchYawrateZAsync(0, 0, 0, self.drone.getMultirotorState().kinematics_estimated.position.z_val, 1).join()
+        #self.drone.moveToPositionAsync(-0.55265, 0.9786, -1.0225, 5).join()
         time.sleep(1)
         # Get collision time stamp
         self.collision_time = self.drone.simGetCollisionInfo().time_stamp
@@ -127,6 +129,10 @@ class AirSimDroneEnv(gym.Env):
 
     def compute_reward(self):
         global previous_x
+        global end_of_maze_counter
+        global win_counter
+
+        end_of_maze_counter+=1
 
         # Get current x position
         pose = self.drone.simGetVehiclePose().position
@@ -145,213 +151,22 @@ class AirSimDroneEnv(gym.Env):
         if reward < 0.1 and reward >= 0: reward = -0.1
 
         done = False
+        if end_of_maze_counter > 350:
+            done = True
+            reward = 100
+            end_of_maze_counter = 0
+            win_counter +=1
+            print("Win Number: ", win_counter)
+
+
         if self.is_collision():
+            end_of_maze_counter = 0
             done = True
             reward = -10  # Penalty for collision
             previous_x = 0
 
         return reward, done
 
-
-    def compute_reward_old(self):
-        global first_pass
-        global counter
-        global frame_time
-        global start_time
-        thresh_dist = 2
-        beta = 1
-        global prevous_depth
-        global current_degree
-        global frame_count 
-        global current_yaw, start_time_1
-        global prevous_distance_from_bus, elapsed_time_2, continues_to_be_bad, step_counter
-        global within_distance_counter 
-
-        
-        # big code change time ===================================================================
-
-        if(first_pass):
-            #self.real_first_pass()
-            first_pass = 0
-            start_time = time.time()
-
-        #depth, closest_edge = self.first_pass()
-        depth = None
-        closest_edge = None
-
-        #print(closest_edge)
-        if closest_edge == "right": # turn right 25 degrees
-            current_yaw += 10
-            self.drone.simSetCameraPose("0", airsim.Pose(airsim.Vector3r(0, 0, 0), airsim.to_quaternion(math.radians(current_degree), 0, math.radians(current_yaw))))
-            #time.sleep(0.2)
-
-        if closest_edge == "Skip_right": # turn right 25 degrees
-            current_yaw += 20
-            self.drone.simSetCameraPose("0", airsim.Pose(airsim.Vector3r(0, 0, 0), airsim.to_quaternion(math.radians(current_degree), 0, math.radians(current_yaw))))
-            #time.sleep(0.2)
-
-        if closest_edge == "left": # turn left 25 degrees
-            current_yaw -= 10
-            self.drone.simSetCameraPose("0", airsim.Pose(airsim.Vector3r(0, 0, 0), airsim.to_quaternion(math.radians(current_degree), 0, math.radians(current_yaw))))
-            #time.sleep(0.2)
-
-        if closest_edge == "bottom":
-            current_degree -= 10
-            self.drone.simSetCameraPose("0", airsim.Pose(airsim.Vector3r(0, 0, 0), airsim.to_quaternion(math.radians(current_degree), 0, math.radians(current_yaw))))
-            #time.sleep(0.2)
-
-        if closest_edge == "top":
-            current_degree += 10
-            self.drone.simSetCameraPose("0", airsim.Pose(airsim.Vector3r(0, 0, 0), airsim.to_quaternion(math.radians(current_degree), 0, math.radians(current_yaw))))
-            #time.sleep(0.2)
-
-        #exit()
-
-        """
-        # frame counter
-        frame_count += 1
-        elapsed_time = time.time() - start_time
-        if elapsed_time > 1: 
-            #print(f"FPS: {frame_count}")
-            frame_count = 0
-            start_time = time.time()
-        """
-
-        """
-        #60 second resest timer:
-        done_here = False
-        elapsed_time_2 = time.time() - start_time_1
-        if elapsed_time_2 >= 120:
-            #print("=====================================================")
-            #print("=======================Reseting======================")
-            #print("=====================================================")
-            #self.drone.reset()
-            done_here = True
-            start_time_1 = time.time()
-        #print("Time: ", elapsed_time_2)
-        """
-        #step_counter += 1
-        #if step_counter % 2000 == 0: print("Current Step:", step_counter, "Out of 500,000")
-        
-        # stop at 200 steps
-        done_here = False
-        elapsed_time_2 += 1
-        if elapsed_time_2 >= 120:
-            done_here = True
-            elapsed_time_2 = 0
-
-        # coord reward
-        pose = self.drone.simGetVehiclePose().position
-        x1 = pose.x_val
-        y1 = pose.y_val
-        z1 = pose.z_val
-        print(pose)
-
-        # bus point
-        x2, y2, z2 = -110, 0, 0
-
-        # Calculate the distance using Euclidean distance formula
-        distance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1)**2)
-        if distance < prevous_distance_from_bus: 
-            reward_for_distance_to_bus = prevous_distance_from_bus - distance
-            continues_to_be_bad = 1
-        else: 
-            reward_for_distance_to_bus = (prevous_distance_from_bus - distance)
-            if reward_for_distance_to_bus > -2:
-                reward_for_distance_to_bus = -2 
-            continues_to_be_bad += 1
-
-        reward_for_distance_to_bus = reward_for_distance_to_bus * continues_to_be_bad  # new
-        prevous_distance_from_bus = distance
-
-
-        # if distance is less then 10 for 40 steps then reward 500 and done 
-        # and take away negtives 
-        if distance < 10:
-            within_distance_counter += 1
-            if reward_for_distance_to_bus < 0: 
-                reward_for_distance_to_bus = 0
-        else:
-            within_distance_counter = 0
-        
-        reward_for_goal = 0
-        if within_distance_counter >= 40:
-            reward_for_goal = 10000
-
-
-        # TODO if distance  is to close + reward and reset
-
-        """
-        # depth reward
-        if depth != None:
-            if depth < prevous_depth: reward_for_depth = 10
-            elif depth > prevous_depth: reward_for_depth = -10
-            else: reward_for_depth = -1
-            prevous_depth = depth
-        else: reward_for_depth = 0
-        if depth == None:
-            reward_for_depth = -10
-        #print("depth: ", depth, "reward_for_depth: ", reward_for_depth)
-        """
-
-        # collision reward ===================================================================
-        if self.is_collision():
-            #reward = -5000
-            collision = True
-            elapsed_time_2 = 0
-
-        
-        else:
-            
-            collision = False
-            '''
-            dist = 10000000
-            for i in range(0, len(pts) - 1):
-                dist = min(dist, np.linalg.norm(np.cross((quad_pt - pts[i]), (quad_pt - pts[i + 1])))
-                    / np.linalg.norm(pts[i] - pts[i + 1]),
-                )
-
-            #print(dist)
-            if dist < thresh_dist:
-                reward = -10
-
-            else:
-                
-                reward_dist = math.exp(-beta * dist) - 0.5
-                reward_dist = 0 # toookout out distance reawrd doesn't work!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                reward_speed = (
-                    np.linalg.norm(
-                        [
-                            self.state["velocity"].x_val,
-                            self.state["velocity"].y_val,
-                            self.state["velocity"].z_val,
-                        ]
-                    )
-                    - 0.5
-                )
-                #print(reward_speed)
-                if (reward_speed < .5): reward_speed = -2
-                elif(reward_speed>10):reward_speed = 10
-                reward = reward_dist + reward_speed
-                if(reward > 20): reward = 10
-                reward += reward_for_depth
-                '''
-            
-        reward = reward_for_distance_to_bus
-
-        done = 0
-        if collision: 
-            done = True
-            reward = -300
-        if done_here: 
-            done = True
-
-        if  reward_for_goal == 10000:
-            reward = 10000
-            done = True
-
-        #print("Final reward: ", reward)
-        return reward, done
 
 
     def is_collision(self):
