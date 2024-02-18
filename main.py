@@ -36,16 +36,9 @@ env = VecTransposeImage(env)
 # Initialize RL algorithm type and parameters
 model = PPO(
     policy="CnnPolicy",
-    #policy_kwargs={
-    #'n_lstm': 128, 
-    #'layers': [64, 64],
-    #'act_fun': tf.nn.relu,  # Assuming you imported TensorFlow as tf
-    #'feature_extraction': 'mlp'
-    #}, 
     env=env,
     learning_rate=0.0003,
     n_steps=1024, # to train
-    #n_steps=8, # to train
     batch_size=128,
     n_epochs=10,
     gamma=0.99,
@@ -53,6 +46,9 @@ model = PPO(
     device="cuda:1",
     tensorboard_log="./tb_logs/",
 )
+
+#print(model.policy)
+#exit()
 
 # Create an evaluation callback with the same env, called every 10000 iterations
 callbacks = []

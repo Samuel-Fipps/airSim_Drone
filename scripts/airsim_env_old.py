@@ -39,16 +39,13 @@ class AirSimDroneEnv(gym.Env):
     def __init__(self, ip_address, image_shape, env_config, step_length):
         self.image_shape = image_shape
         self.sections = env_config["sections"]
+
         self.step_length = step_length
+
         self.drone = airsim.MultirotorClient(ip=ip_address)
-
-        max_linear_speed = 1.0 
-        self.observation_space = gym.spaces.Box(low=0, high=255, shape=image_shape, dtype=np.uint8)
-
-        self.action_space = gym.spaces.Box(
-            low=np.array([-max_linear_speed, -max_linear_speed, -max_linear_speed]),
-            high=np.array([max_linear_speed, max_linear_speed, max_linear_speed]),
-            dtype=np.float32)
+        self.observation_space = gym.spaces.Box(low=0, high=255, shape=self.image_shape, dtype=np.uint8)
+        self.action_space = gym.spaces.Discrete(17)
+        #self.action_space = gym.spaces.Discrete(7)
 
         self.info = {"collision": False}
 
@@ -93,16 +90,37 @@ class AirSimDroneEnv(gym.Env):
 
 
 
-    def do_action(self, action):
-        vx, vy, vz = action  # Extract velocity components from action
+    def do_action(self, select_action):
+        base_speed = 3.0  # Base speed for movement
 
-        # Convert numpy.float32 to native Python floats for compatibility
-        vx = float(vx)
-        vy = float(vy)
-        vz = float(vz)
+        # Mapping each action to its corresponding velocity adjustments
+        action_effects = {
+            0: {'vy': 0, 'vz': 0, 'speed': -base_speed},  # Backward
+            1: {'vy': 0, 'vz': 0, 'speed': base_speed},   # Forward
+            2: {'vy': -base_speed, 'vz': 0, 'speed': 0},  # Left
+            3: {'vy': base_speed, 'vz': 0, 'speed': 0},   # Right
+            4: {'vy': 0, 'vz': base_speed, 'speed': 0},   # Up
+            5: {'vy': 0, 'vz': -base_speed, 'speed': 0},  # Down
+            6: {'vy': 0, 'vz': 0, 'speed': 0},            # Hover
+            7: {'vy': 0, 'vz': base_speed, 'speed': base_speed},  # Forward-Up
+            8: {'vy': 0, 'vz': -base_speed, 'speed': base_speed},  # Forward-Down
+            9: {'vy': -base_speed, 'vz': base_speed, 'speed': base_speed},  # Forward-Left-Up
+            10: {'vy': -base_speed, 'vz': -base_speed, 'speed': base_speed}, # Forward-Left-Down
+            11: {'vy': base_speed, 'vz': base_speed, 'speed': base_speed},  # Forward-Right-Up
+            12: {'vy': base_speed, 'vz': -base_speed, 'speed': base_speed}, # Forward-Right-Down
+            13: {'vy': 0, 'vz': base_speed, 'speed': -base_speed},  # Backward-Up
+            14: {'vy': 0, 'vz': -base_speed, 'speed': -base_speed}, # Backward-Down
+            15: {'vy': -base_speed, 'vz': base_speed, 'speed': -base_speed}, # Backward-Left-Up
+            16: {'vy': -base_speed, 'vz': -base_speed, 'speed': -base_speed}, # Backward-Left-Down
+            17: {'vy': base_speed, 'vz': base_speed, 'speed': -base_speed}, # Backward-Right-Up
+            18: {'vy': base_speed, 'vz': -base_speed, 'speed': -base_speed}, # Backward-Right-Down
+        }
 
-        # Use the action values for drone velocity control
-        self.drone.moveByVelocityAsync(vx, vy, vz, duration=0.1).join()
+        if select_action in action_effects:
+            action = action_effects[select_action]
+            self.drone.moveByVelocityBodyFrameAsync(action['speed'], action['vy'], action['vz'], duration=0.1).join()
+        else:
+            print(f"Action {select_action} is not defined.")
 
 
 
