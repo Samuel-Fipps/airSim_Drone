@@ -32,6 +32,13 @@ debug_counter = 0
 end_of_maze_counter = 0
 win_counter = 0
 
+hole_1 = False
+hole_2 = False
+hole_3 = False
+hole_4 = False
+hole_5 = False
+hole_6 = False
+
 def interpolate_velocity(current_v, target_v, steps=10):
     return np.linspace(current_v, target_v, steps)
 
@@ -39,16 +46,13 @@ class AirSimDroneEnv(gym.Env):
     def __init__(self, ip_address, image_shape, env_config, step_length):
         self.image_shape = image_shape
         self.sections = env_config["sections"]
+
         self.step_length = step_length
+
         self.drone = airsim.MultirotorClient(ip=ip_address)
-
-        max_linear_speed = 1.0 
-        self.observation_space = gym.spaces.Box(low=0, high=255, shape=image_shape, dtype=np.uint8)
-
-        self.action_space = gym.spaces.Box(
-            low=np.array([-max_linear_speed, -max_linear_speed, -max_linear_speed]),
-            high=np.array([max_linear_speed, max_linear_speed, max_linear_speed]),
-            dtype=np.float32)
+        self.observation_space = gym.spaces.Box(low=0, high=255, shape=self.image_shape, dtype=np.uint8)
+        self.action_space = gym.spaces.Discrete(11)
+        #self.action_space = gym.spaces.Discrete(7)
 
         self.info = {"collision": False}
 
@@ -93,16 +97,41 @@ class AirSimDroneEnv(gym.Env):
 
 
 
-    def do_action(self, action):
-        vx, vy, vz = action  # Extract velocity components from action
+    def do_action(self, select_action):
+        """was speed = 1.0 and worked"""
+        #speed = 3.0
+        vx = 0
+        vy = 0
+        vz = 0
 
-        # Convert numpy.float32 to native Python floats for compatibility
-        vx = float(vx)
-        vy = float(vy)
-        vz = float(vz)
-
-        # Use the action values for drone velocity control
-        self.drone.moveByVelocityAsync(vx, vy, vz, duration=0.1).join()
+        speed = 3.0
+        if select_action == 0:    # up-left diagonally 
+            vy, vz = (-speed, -speed)
+        elif select_action == 1:  # up-forward
+            vy, vz = (0, -speed)
+        elif select_action == 2:  # up-right diagonally 
+            vy, vz = (speed, -speed)
+        elif select_action == 3:  # left diagonally 
+            vy, vz = (-speed, 0)
+        elif select_action == 4:  # forward
+            vy, vz = (0, 0)
+        elif select_action == 5:  # right diagonally
+            vy, vz = (speed, 0)
+        elif select_action == 6:  # Down-left diagonally
+            vy, vz = (-speed, speed)
+        elif select_action == 7:  # Down-forward 
+            vy, vz = (0, speed)
+        elif select_action == 8:  # Down-right diagonally
+            vy, vz = (speed, speed)
+        elif select_action == 9:  # Move backward
+            vx, vz = (-speed, 0)  
+        elif select_action == 10: # Hoover
+            vx, vz = (0, 0) 
+        
+        if select_action == 9 or select_action == 10:
+            self.drone.moveByVelocityBodyFrameAsync(vx, vy, vz, duration=0.1).join()
+        else:
+            self.drone.moveByVelocityBodyFrameAsync(speed, vy, vz, duration=0.1).join()
 
 
 
@@ -110,9 +139,108 @@ class AirSimDroneEnv(gym.Env):
         self.info["collision"] = self.is_collision()
         obs = self.get_rgb_image()
         return obs, self.info
+    
+    def reset_reward_trackers(self):
+        global hole_1 
+        global hole_2  
+        global hole_3 
+        global hole_4 
+        global hole_5 
+        global hole_6 
+        hole_1 = False
+        hole_2 = False
+        hole_3 = False
+        hole_4 = False
+        hole_5 = False
+        hole_6 = False
 
+    
+    def checkpoint_reward_checker(self, x):
+        reward = 0
+        global hole_1 
+        global hole_2  
+        global hole_3 
+        global hole_4 
+        global hole_5 
+        global hole_6 
+        did_it_win = False
+        
+        if x < -20 and hole_1 == False: 
+            reward += 50
+            hole_1 = True
+
+        if x < -38 and hole_2 == False: 
+            reward += 50
+            hole_2 = True
+
+        if x < -60 and hole_3 == False: 
+            reward += 50
+            hole_3 = True
+
+        if x < -79 and hole_4 == False: 
+            reward += 50 
+            hole_4 = True
+
+        if x < -102 and hole_5 == False: 
+            reward += 50
+            hole_5 = True
+
+        if x < -135 and hole_6 == False: 
+            reward += 50
+            hole_6 = True
+
+        if x < -165: 
+            reward += 10000
+            did_it_win = True
+            
+        return reward, did_it_win
 
     def compute_reward(self):
+        global previous_x
+        global end_of_maze_counter
+        global win_counter
+        done = False
+
+        end_of_maze_counter+=1
+
+        pose = self.drone.simGetVehiclePose().position
+        x1 = pose.x_val
+
+
+        if 'previous_x' not in globals():
+            previous_x = x1  
+        x_difference = previous_x - x1
+        previous_x = x1  
+
+        # Use x_difference as the reward
+        reward = x_difference 
+        
+        #keeps wanting to just hover in place, counter this:
+        if reward < 0.2 and reward >= 0: reward = -0.2
+        if reward < 0: reward = 0
+
+        # add Check point reward for flying through holes
+        checkpoint_reward, win = self.checkpoint_reward_checker(pose.x_val)
+        reward += checkpoint_reward
+
+        if win: 
+            done = True
+            win_counter += 1
+            print("Number of wins", win_counter)
+
+        if self.is_collision():
+            done = True
+            reward = -10  # Penalty for collision
+
+        if done:
+            self.reset_reward_trackers()
+            end_of_maze_counter = 0
+            previous_x = 0
+
+        return reward, done
+
+
+    def compute_reward_old(self):
         global previous_x
         global end_of_maze_counter
         global win_counter
@@ -122,6 +250,15 @@ class AirSimDroneEnv(gym.Env):
         # Get current x position
         pose = self.drone.simGetVehiclePose().position
         x1 = pose.x_val
+
+
+        #self.drone.enableApiControl(False)
+        #self.drone.armDisarm(False)
+
+        #while(1):
+            #pose = self.drone.simGetVehiclePose().position
+            #print("Pose:", pose)
+            #time.sleep(1)
 
         # Compute x difference traveled
         if 'previous_x' not in globals():
@@ -133,21 +270,29 @@ class AirSimDroneEnv(gym.Env):
         reward = x_difference 
         
         #keeps wanting to just hover in place, counter this:
-        if reward < 0.1 and reward >= 0: reward = -0.1
+        if reward < 0.2 and reward >= 0: reward = -0.2
 
+        if reward < 0: reward = 0
+
+        
         done = False
+        if end_of_maze_counter > 350:
+            done = True
+            end_of_maze_counter = 0
+
+        """
         if end_of_maze_counter > 350:
             done = True
             reward = 100
             end_of_maze_counter = 0
             win_counter +=1
             print("Win Number: ", win_counter)
-
+        """
 
         if self.is_collision():
             end_of_maze_counter = 0
             done = True
-            reward = -10  # Penalty for collision
+            reward = -100  # Penalty for collision
             previous_x = 0
 
         return reward, done

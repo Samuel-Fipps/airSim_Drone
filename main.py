@@ -44,7 +44,7 @@ model = PPO(
     gamma=0.99,
     gae_lambda=0.95,
     device="cuda:1",
-    tensorboard_log="./tb_logs/",
+    tensorboard_log="C:/Users/14055/Documents/AirSim/tf",
 )
 
 #print(model.policy)
@@ -56,8 +56,8 @@ eval_callback = EvalCallback(
     env,
     callback_on_new_best=None,
     n_eval_episodes=10,
-    best_model_save_path=".",
-    log_path=".",
+    best_model_save_path="C:/Users/14055/Documents/AirSim/",
+    log_path="C:/Users/14055/Documents/AirSim/tf",
     eval_freq=1025,
 )
 callbacks.append(eval_callback)
